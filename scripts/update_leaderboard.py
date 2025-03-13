@@ -4,7 +4,7 @@ import os
 
 GITHUB_TOKEN = ("CODEQUEST_ACCESS_TOKEN")  #os.getenv("CODEQUEST_ACCESS_TOKEN")
 REPO_OWNER = "Abhishek-Sharma182005"
-REPO_NAME = "-CodeQuest-100-Days-DSA"
+REPO_NAME = "CodeQuest-100-Days-DSA"
 LEADERBOARD_FILE = "leaderboard.json"
 
 # Fetch participant data from the GitHub repository
