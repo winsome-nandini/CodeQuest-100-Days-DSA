@@ -22,7 +22,8 @@ jobs:
         run: pip install requests
 
       - name: Run leaderboard update script
-        run: scripts/update_leaderboard.py
+        run: python scripts/update_leaderboard.py
+
         env:
           CODEQUEST_ACCESS_TOKEN: ${{ secrets.CODEQUEST_ACCESS_TOKEN }}
 
