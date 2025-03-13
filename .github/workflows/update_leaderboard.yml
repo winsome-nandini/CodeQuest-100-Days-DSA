@@ -29,11 +29,12 @@ jobs:
 
       - name: Commit and Push Score Updates
         env:
-         GITHUB_TOKEN: ${{ secrets.CODEQUEST_ACCESS_TOKEN }}  
+          GITHUB_TOKEN: ${{ secrets.CODEQUEST_ACCESS_TOKEN }}  
         run: |
-            git config --global user.name "CodeQuestBot"
-            git config --global user.email "bot@codequest.com"
-            git remote set-url origin https://x-access-token:${{ secrets.CODEQUEST_ACCESS_TOKEN }}@github.com/Abhishek-Sharma182005/-CodeQuest-100-Days-DSA.git
-            git add leaderboard.json
-            git commit -m "Updated leaderboard"
-            git push origin main
+          git config --global user.name "CodeQuestBot"
+          git config --global user.email "bot@codequest.com"
+          git remote set-url origin https://x-access-token:${{ secrets.CODEQUEST_ACCESS_TOKEN }}@github.com/Abhishek-Sharma182005/-CodeQuest-100-Days-DSA.git
+          git add leaderboard.json
+          git commit -m "Updated leaderboard" || echo "No changes to commit"
+          git push origin main
+
