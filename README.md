@@ -12,7 +12,7 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 ---  
 
 ## 🎯 Event Structure  
-📖 **Daily DSA Challenges** – Problems posted on GitHub & LeetCode.  
+📖 **Daily DSA Challenges** – Problems posted on GitHub & LinkedIn at **12 AM daily**.  
 👨‍🏫 **Mentorship** – Get guidance from **2 expert mentors**.  
 🏅 **Win Rewards** – Top **3 Techtronica members** get exciting prizes!  
 📜 **E-Certificates** – Available for **all active participants**.  
@@ -31,55 +31,68 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 ---  
 
 ## 🏅 How Are Winners Decided?  
-Winners are selected based on a **scoring system** that evaluates:  
-1️⃣ **Daily Participation** – Submitting solutions consistently.  
-2️⃣ **Code Quality & Optimization** – Well-structured, efficient, and readable code.  
-3️⃣ **Leaderboard Performance** – Automated tracking of commits and problem-solving accuracy.  
+1️⃣ **Daily Participation** – Consistently solving problems.  
+2️⃣ **Code Quality & Optimization** – Submitting efficient & well-documented solutions.  
+3️⃣ **Leaderboard Performance** – Based on GitHub submissions & accuracy.  
+4️⃣ **Weekly Streak Bonus** – Earn extra points for continuous participation.
 
 🏆 **Final winners will be selected based on cumulative performance.**  
 
 ---  
 
-## 🏆 Scoring System (How Points Are Calculated)  
-Each participant earns points based on the following criteria:
+## 📜 Scoring System  
+- **Daily Problem Solving**: +2 points per correctly solved problem.  
+- **Code Quality & Optimization**: +1 point for well-documented & optimized code.  
+- **Social Media Posting**: +0.5 points per day for posting progress with **#TechtronicaCodeChallenge**.  
+- **Weekly Streak Bonus**: +3 points for completing all 7 daily problems in a week.  
+- **Copied Code Penalty**: -5 points if plagiarism is detected.  
 
-| Criteria                        | Points Awarded |
-|--------------------------------|---------------|
-| Daily Problem Submission       | **+10** per day  |
-| Solving Medium Difficulty      | **+5** bonus  |
-| Solving Hard Difficulty        | **+10** bonus  |
-| Code Quality (Linting Check)   | **+5** per problem  |
-| Early Submission (Before 6 PM) | **+2** bonus  |
+### 📊 Example Scoring for a Week:  
+| Participant | Days Solved | Code Quality | Social Media Posts | Weekly Streak | Plagiarism Penalty | Total Score |  
+|------------|------------|--------------|--------------------|---------------|--------------------|-------------|  
+| **Amit**  | 7 | 5 | 4 | ✅ +3 | ❌ 0 | **22.5** |  
+| **Sneha** | 5 | 4 | 3 | ❌ 0 | ❌ 0 | **15.5** |  
+| **Raj**   | 7 | 6 | 6 | ✅ +3 | ✅ -5 | **19.5** |  
 
-### **Example Calculation:**  
-- **Day 1:** Submitted a **Medium** problem before 6 PM with good code quality.  
-  ✅ **10 (submission) + 5 (medium bonus) + 5 (code quality) + 2 (early submission) = 22 Points**  
-- **Day 2:** Submitted a **Hard** problem, but failed linting.  
-  ✅ **10 (submission) + 10 (hard bonus) = 20 Points**  
-- **Total after 2 days:** **42 Points**  
-
-📌 **Top 3 scorers after 100 days will be the winners!**  
-
----  
-
-## 📜 Certificates & Recognition  
-- **All Participants:** E-Certificates for active participation.  
-- **Techtronica Members Only:** Top 3 winners receive exclusive prizes.  
-- **Leaderboard Highlights:** Top coders will be featured on GitHub & social media.  
+🏆 **Top scorers will be featured on our leaderboard!**  
 
 ---  
 
 ## 🔗 How to Participate?  
 📍 **Sign up & start coding!** Join the challenge by following our GitHub repository.  
 📍 **Submit Your Solutions:** Fork this repository, commit your daily solutions, and create a Pull Request.  
+📍 **Post on Social Media:** Share your progress daily on LinkedIn, Twitter, or Instagram using **#TechtronicaCodeChallenge** and tag Techtronica Society.  
+📍 **Track Your Score:** Stay updated with the weekly leaderboard on GitHub.  
+
+### 📌 How to Fork & Submit Your Code  
+1️⃣ **Fork this repository** on GitHub.  
+2️⃣ **Clone your fork** to your local machine using:
+   ```sh
+   git clone https://github.com/your-username/CodeQuest.git
+   ```
+3️⃣ **Create a new branch** for each day's solution:
+   ```sh
+   git checkout -b day-1-solution
+   ```
+4️⃣ **Add and commit your solution**:
+   ```sh
+   git add .
+   git commit -m "Added Day 1 solution"
+   ```
+5️⃣ **Push your branch to GitHub**:
+   ```sh
+   git push origin day-1-solution
+   ```
+6️⃣ **Submit a Pull Request** to the main repository.  
+
+📢 **Our mentors will review your submissions & update the leaderboard!**  
 
 ---  
 
-## 📢 Social Media Participation  
-📌 **Get featured by sharing your progress!**  
-- Post daily progress on **LinkedIn, Twitter, or Instagram**.  
-- Use hashtags **#TechtronicaCodeChallenge** or **#100DaysOfDSA**.  
-- Tag **Techtronica Society’s official page** for engagement & recognition.  
+## 📣 Stay Updated & Get Featured!  
+🔹 Follow **#TechtronicaCodeChallenge** on LinkedIn & Instagram.  
+🔹 Join our **Discord/Telegram** community for daily discussions.  
+🔹 Tag us in your progress posts to get featured!  
 
 ---  
 
