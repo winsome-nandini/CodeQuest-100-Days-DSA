@@ -50,7 +50,28 @@ def update_leaderboard():
             if entry["username"] == username:
                 entry.update(updated_entry)
                 found = True
-                break
+                breakimport json
+
+# Load existing leaderboard
+try:
+    with open("leaderboard.json", "r") as f:
+        leaderboard_data = json.load(f)
+except (json.JSONDecodeError, FileNotFoundError):
+    print("Error: leaderboard.json is empty or missing. Creating a new one.")
+    leaderboard_data = {}
+
+print("Loaded Leaderboard:", leaderboard_data)
+
+# Example new scores (Replace this with actual API call)
+new_scores = {"participants": [{"name": "Abhishek", "score": 100}]}  # Replace with real data
+print("New Scores:", new_scores)
+
+# Save updated leaderboard
+with open("leaderboard.json", "w") as f:
+    json.dump(new_scores, f, indent=4)
+
+print("Updated Leaderboard Successfully")
+
         if not found:
             leaderboard["participants"].append(updated_entry)
 
