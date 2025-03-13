@@ -21,21 +21,44 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 ---  
 
 ## 📝 Who Can Participate?  
-| Participants           | Access to Problems | Eligible for Rewards | E-Certificates | Leaderboard Recognition |
-|----------------------|-------------------|-------------------|-----------------|---------------------|
-| **Techtronica Members** | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
-| **Non-Members** | ✅ Yes | ❌ No | ✅ Yes | ✅ Yes |
+| Participants           | Access to Problems | Eligible for Rewards | E-Certificates | Leaderboard Recognition |  
+|----------------------|-------------------|-------------------|-----------------|---------------------|  
+| **Techtronica Members** | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |  
+| **Non-Members** | ✅ Yes | ❌ No | ✅ Yes | ✅ Yes |  
 
 📌 **Note:** Rewards are exclusive to **Techtronica Society members**, but **everyone can participate, practice, and earn certificates!**  
 
 ---  
 
 ## 🏅 How Are Winners Decided?  
-1️⃣ **Daily Participation** – Consistently solving problems.  
-2️⃣ **Code Quality & Optimization** – Submitting efficient & well-documented solutions.  
-3️⃣ **Leaderboard Performance** – Based on GitHub submissions & accuracy.  
+Winners are selected based on a **scoring system** that evaluates:  
+1️⃣ **Daily Participation** – Submitting solutions consistently.  
+2️⃣ **Code Quality & Optimization** – Well-structured, efficient, and readable code.  
+3️⃣ **Leaderboard Performance** – Automated tracking of commits and problem-solving accuracy.  
 
 🏆 **Final winners will be selected based on cumulative performance.**  
+
+---  
+
+## 🏆 Scoring System (How Points Are Calculated)  
+Each participant earns points based on the following criteria:
+
+| Criteria                        | Points Awarded |
+|--------------------------------|---------------|
+| Daily Problem Submission       | **+10** per day  |
+| Solving Medium Difficulty      | **+5** bonus  |
+| Solving Hard Difficulty        | **+10** bonus  |
+| Code Quality (Linting Check)   | **+5** per problem  |
+| Early Submission (Before 6 PM) | **+2** bonus  |
+
+### **Example Calculation:**  
+- **Day 1:** Submitted a **Medium** problem before 6 PM with good code quality.  
+  ✅ **10 (submission) + 5 (medium bonus) + 5 (code quality) + 2 (early submission) = 22 Points**  
+- **Day 2:** Submitted a **Hard** problem, but failed linting.  
+  ✅ **10 (submission) + 10 (hard bonus) = 20 Points**  
+- **Total after 2 days:** **42 Points**  
+
+📌 **Top 3 scorers after 100 days will be the winners!**  
 
 ---  
 
@@ -46,26 +69,17 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 
 ---  
 
-## 📢 Social Media Participation  
-Want to gain recognition and showcase your progress? Follow these steps:  
-
-📍 **Post your daily progress** on **LinkedIn, Twitter, or Instagram**.  
-📍 Use the hashtags **#TechtronicaCodeChallenge** and **#100DaysOfDSA**.  
-📍 Tag **Techtronica Society's official page** (if available).  
-📍 Stand a chance to be **featured on our official channels**!  
-
----  
-
 ## 🔗 How to Participate?  
 📍 **Sign up & start coding!** Join the challenge by following our GitHub repository.  
 📍 **Submit Your Solutions:** Fork this repository, commit your daily solutions, and create a Pull Request.  
 
 ---  
 
-## 📣 Stay Updated & Get Featured!  
-🔹 Follow **#CodeQuestChallenge** on LinkedIn & Instagram.  
-🔹 Join our **Discord/Telegram** community for daily discussions.  
-🔹 Tag us in your progress posts to get featured!  
+## 📢 Social Media Participation  
+📌 **Get featured by sharing your progress!**  
+- Post daily progress on **LinkedIn, Twitter, or Instagram**.  
+- Use hashtags **#TechtronicaCodeChallenge** or **#100DaysOfDSA**.  
+- Tag **Techtronica Society’s official page** for engagement & recognition.  
 
 ---  
 
