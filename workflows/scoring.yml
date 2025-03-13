@@ -21,8 +21,9 @@ jobs:
         run: pip install requests pandas flake8
 
       - name: Fetch Submissions & Calculate Scores
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+       env:
+  GITHUB_TOKEN: ${{ secrets.CODEQUEST_ACCESS_TOKEN }}
+
         run: python scripts/score_calculator.py
 
       - name: Commit and Push Score Updates
