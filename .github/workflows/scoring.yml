@@ -33,6 +33,8 @@ jobs:
         run: |
           git config --global user.name "CodeQuestBot"
           git config --global user.email "bot@codequest.com"
+           git pull --rebase origin main  # Prevents push conflicts
           git add leaderboard.json
+             
           git commit -m "Updated leaderboard"
           git push
