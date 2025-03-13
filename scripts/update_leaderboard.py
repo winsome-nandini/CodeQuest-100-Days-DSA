@@ -3,7 +3,7 @@ import requests
 import os
 
 # GitHub API Token (use environment variable)
-GITHUB_TOKEN = os.getenv("CODEQUEST_ACCESS_TOKEN")  
+GITHUB_TOKEN = os.getenv("CODEQUEST_ACCESS_TOKEN")
 REPO_OWNER = "Abhishek-Sharma182005"
 REPO_NAME = "CodeQuest-100-Days-DSA"
 LEADERBOARD_FILE = "leaderboard.json"
@@ -20,16 +20,19 @@ def get_participants():
     print(f"Error fetching contributors: {response.status_code} - {response.text}")
     return []
 
-# Load the existing leaderboard
+# Load the existing leaderboard and ensure it contains the required structure
 def load_leaderboard():
     if os.path.exists(LEADERBOARD_FILE):
         try:
             with open(LEADERBOARD_FILE, "r") as file:
-                return json.load(file)
-        except json.JSONDecodeError:
-            print("Error: leaderboard.json is corrupted. Resetting leaderboard.")
+                leaderboard = json.load(file)
+                if "participants" not in leaderboard:
+                    raise ValueError("Missing 'participants' key in leaderboard.json")
+                return leaderboard
+        except (json.JSONDecodeError, ValueError) as e:
+            print(f"Error: leaderboard.json is corrupted ({e}). Resetting leaderboard.")
     
-    return {"participants": []}
+    return {"participants": []}  # Ensure the file has the correct format
 
 # Update scores based on contributions
 def update_leaderboard():
