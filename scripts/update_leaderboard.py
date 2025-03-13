@@ -50,7 +50,8 @@ def update_leaderboard():
             if entry["username"] == username:
                 entry.update(updated_entry)
                 found = True
-                breakimport json
+                break
+                import json
 
 # Load existing leaderboard
 try:
