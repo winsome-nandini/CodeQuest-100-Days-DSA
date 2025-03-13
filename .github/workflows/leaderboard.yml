@@ -1,4 +1,4 @@
-name: Update Leaderboard
+name: Update LLeaderboard
 
 on:
   schedule:
