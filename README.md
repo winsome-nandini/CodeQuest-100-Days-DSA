@@ -21,10 +21,10 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 ---  
 
 ## 📝 Who Can Participate?  
-| Participants           | Access to Problems | Eligible for Rewards | E-Certificates | Leaderboard Recognition |  
-|----------------------|-------------------|-------------------|-----------------|---------------------|  
-| **Techtronica Members** | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |  
-| **Non-Members** | ✅ Yes | ❌ No | ✅ Yes | ✅ Yes |  
+| Participants           | Access to Problems | Eligible for Rewards | E-Certificates | Leaderboard Recognition |
+|----------------------|-------------------|-------------------|-----------------|---------------------|
+| **Techtronica Members** | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
+| **Non-Members** | ✅ Yes | ❌ No | ✅ Yes | ✅ Yes |
 
 📌 **Note:** Rewards are exclusive to **Techtronica Society members**, but **everyone can participate, practice, and earn certificates!**  
 
@@ -46,6 +46,16 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 
 ---  
 
+## 📢 Social Media Participation  
+Want to gain recognition and showcase your progress? Follow these steps:  
+
+📍 **Post your daily progress** on **LinkedIn, Twitter, or Instagram**.  
+📍 Use the hashtags **#TechtronicaCodeChallenge** and **#100DaysOfDSA**.  
+📍 Tag **Techtronica Society's official page** (if available).  
+📍 Stand a chance to be **featured on our official channels**!  
+
+---  
+
 ## 🔗 How to Participate?  
 📍 **Sign up & start coding!** Join the challenge by following our GitHub repository.  
 📍 **Submit Your Solutions:** Fork this repository, commit your daily solutions, and create a Pull Request.  
@@ -64,7 +74,7 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 📍 **Department of ECE, GLA University**  
 
 👨‍💻 **Organizer:** **Abhishek Sharma**  
-🔗 [LinkedIn]([https://linkedin.com/in/your-profile](https://www.linkedin.com/in/abhishek-sharma-19april1965/)) | 📧 holaabhisheksharma@gmail.com  
+🔗 [LinkedIn](https://www.linkedin.com/in/abhishek-sharma-19april1965/) | 📧 holaabhisheksharma@gmail.com  
 
 ---  
 
