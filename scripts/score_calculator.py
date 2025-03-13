@@ -1,3 +1,4 @@
+import base64  # Required for decoding Base64 content
 import json
 import requests
 import os
