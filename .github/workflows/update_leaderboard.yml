@@ -35,9 +35,11 @@ jobs:
         run: |
           git config --global user.name "CodeQuestBot"
           git config --global user.email "bot@codequest.com"
+          git stash
           git remote set-url origin https://${{ secrets.CODEQUEST_ACCESS_TOKEN }}@github.com/Abhishek-Sharma182005/CodeQuest-100-Days-DSA.git
           
           git pull --rebase origin main  # Prevents push conflicts
+          git stash pop || echo "No stashed changes to apply"
           
           git add leaderboard.json
           git commit -m "Updated leaderboard" || echo "No changes to commit"
