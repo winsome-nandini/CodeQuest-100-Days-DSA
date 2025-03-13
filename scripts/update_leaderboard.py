@@ -2,7 +2,7 @@ import json
 import requests
 import os
 
-GITHUB_TOKEN = ("CODEQUEST_ACCESS_TOKEN")  #os.getenv("CODEQUEST_ACCESS_TOKEN")
+GITHUB_TOKEN = ("CodeQuest Automation")  #os.getenv("CODEQUEST_ACCESS_TOKEN")
 REPO_OWNER = "your-org-or-username"
 REPO_NAME = "your-repo-name"
 LEADERBOARD_FILE = "leaderboard.json"
