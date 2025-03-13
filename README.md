@@ -1,88 +1,73 @@
-# **🚀 CodeQuest: 100 Days of DSA Mastery**
+# 📌 CodeQuest: The Ultimate 100-Day DSA Challenge
 
-### **📌 Hosted by Code-e-Phobia Club under Techtronica Society, Department of ECE, GLA University**
+🚀 **Open to All, Exclusive Rewards for Techtronica Members**  
+🔹 **Hosted by Code-e-phobia Club** under **Techtronica Society, Department of ECE, GLA University**  
 
-## **📌 Introduction**
-Welcome to **CodeQuest: 100 Days of DSA Mastery**, a structured coding challenge starting from **April 1st**, designed to help you improve your **Data Structures & Algorithms (DSA)** skills through daily practice, weekly problem sets, bi-weekly contests, and curated study resources. 💡🔥
+## 🏆 About CodeQuest  
+CodeQuest is a **100-day open coding challenge** designed to help students master **Data Structures & Algorithms (DSA)** through consistent problem-solving.  
 
----
+✅ **Everyone** can participate, code, and learn!  
+✅ **Techtronica members** get **exclusive perks** like rewards & leaderboard recognition.  
 
-## **📅 Event Structure**
-- 📆 **Start Date:** April 1st
-- 📚 **Daily Challenges:** One problem per day
-- 📌 **Weekly Challenges:** A curated set of problems covering key DSA concepts
-- 🏆 **Bi-Weekly Contests:** Competitive coding contests to track progress
-- 📖 **Study Resources:** Notes, roadmaps, and tutorials shared on GitHub
-- 🎓 **Mentorship:** Guidance from experienced mentors
+---  
 
----
+## 🎯 Event Structure  
+📖 **Daily DSA Challenges** – Problems posted on GitHub & LeetCode.  
+👨‍🏫 **Mentorship** – Get guidance from **2 expert mentors**.  
+🏅 **Win Rewards** – Top **3 Techtronica members** get exciting prizes!  
+📜 **E-Certificates** – Available for **all active participants**.  
+📢 **Weekly Leaderboard** – Featuring **top coders from all participants**.  
 
-## **📂 Repository Structure**
-📂 **CodeQuest-100-Days-DSA/**  
-│── 📜 **README.md** _(Main event details)_  
-│── 📂 **Daily-Problems/** _(Daily challenges - one per day)_  
-│── 📂 **Weekly-Challenges/** _(Set of 5-10 problems per week)_  
-│── 📂 **Biweekly-Contests/** _(Contest problems & solutions)_  
-│── 📂 **Leaderboard/** _(Tracking participant progress)_  
-│── 📂 **Resources/** _(Roadmaps, tutorials, cheat sheets, and study materials)_  
-│── 📂 **Submissions/** _(Participants submit their solutions)_  
-│──── 📂 **YourGitHubUsername/** _(Create your own folder)_  
-│────── 📜 **Day1-Solution.py** _(Your solution for Day 1)_  
-│────── 📜 **Day2-Solution.cpp** _(Your solution for Day 2)_  
+---  
 
----
+## 📝 Who Can Participate?  
+| Participants           | Access to Problems | Eligible for Rewards | E-Certificates | Leaderboard Recognition |  
+|----------------------|-------------------|-------------------|-----------------|---------------------|  
+| **Techtronica Members** | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |  
+| **Non-Members** | ✅ Yes | ❌ No | ✅ Yes | ✅ Yes |  
 
-## **🎯 How to Participate?**
-1️⃣ **Fork this repository** to your GitHub account.  
-2️⃣ **Clone your forked repo:**
-```sh
-   git clone https://github.com/YourGitHubUsername/CodeQuest-100-Days-DSA.git
-```
-3️⃣ **Create a folder inside `Submissions/` with your GitHub username.**  
-4️⃣ **Solve the daily problems** and submit solutions by creating a **Pull Request (PR)**.  
-5️⃣ **Mentors will review & merge your solutions.**  
-6️⃣ **Study materials will be shared in the `Resources/` folder.**  
-7️⃣ **Compete in Bi-Weekly Contests** and track your rank on the leaderboard!  
+📌 **Note:** Rewards are exclusive to **Techtronica Society members**, but **everyone can participate, practice, and earn certificates!**  
 
----
+---  
 
-## **📝 Submission Guidelines**
-- File format: `.cpp`, `.py`, `.java`, or `.md` for explanations.
-- Add comments to explain your code.
-- Name files as `DayX-Solution.extension` (e.g., `Day1-Solution.py`).
-- Plagiarism = **Disqualification** ❌.
+## 🏅 How Are Winners Decided?  
+1️⃣ **Daily Participation** – Consistently solving problems.  
+2️⃣ **Code Quality & Optimization** – Submitting efficient & well-documented solutions.  
+3️⃣ **Leaderboard Performance** – Based on GitHub submissions & accuracy.  
 
----
+🏆 **Final winners will be selected based on cumulative performance.**  
 
-## **🏆 How Winners Are Selected?**
-### **🏅 1st Place – CodeQuest Champion**
-- Consistently solves problems & contests.
-- Writes optimized & well-documented code.
-- High contest rankings.
+---  
 
-### **🥈 2nd Place – Algorithm Ace**
-- Strong contest performance.
-- Regularly submits solutions.
-- Active in discussions & mentorship sessions.
+## 📜 Certificates & Recognition  
+- **All Participants:** E-Certificates for active participation.  
+- **Techtronica Members Only:** Top 3 winners receive exclusive prizes.  
+- **Leaderboard Highlights:** Top coders will be featured on GitHub & social media.  
 
-### **🥉 3rd Place – Rising Coder**
-- Notable improvement over 100 days.
-- Consistent effort & participation.
+---  
 
-🏆 **Bonus Awards:** Best Debugger, Fastest Coder, Most Consistent Performer.
+## 🔗 How to Participate?  
+📍 **Sign up & start coding!** Join the challenge by following our GitHub repository.  
+📍 **Submit Your Solutions:** Fork this repository, commit your daily solutions, and create a Pull Request.  
 
----
+---  
 
-## **📢 Important Links**
-🔗 **Event Discussion Forum:** [GitHub Discussions](https://github.com/)  
-🔗 **Leaderboard Tracking:** [Google Sheet Link](#)  
-🔗 **Bi-Weekly Contests:** [LeetCode/Codeforces](#)  
-🔗 **Study Materials:** [Resources Folder](#)  
+## 📣 Stay Updated & Get Featured!  
+🔹 Follow **#CodeQuestChallenge** on LinkedIn & Instagram.  
+🔹 Join our **Discord/Telegram** community for daily discussions.  
+🔹 Tag us in your progress posts to get featured!  
 
----
+---  
 
-⚡ **Let's embark on this journey to master DSA from April 1st!** 🚀🔥
+### ✨ Hosted By:  
+🚀 **Techtronica Society | Code-e-phobia Club**  
+📍 **Department of ECE, GLA University**  
 
-### **📌 Organized by:**
-**Code-e-Phobia Club** | **Techtronica Society**  
-📍 **Department of ECE, GLA University**
+👨‍💻 **Organizer:** **Abhishek Sharma**  
+🔗 [LinkedIn]([https://linkedin.com/in/your-profile](https://www.linkedin.com/in/abhishek-sharma-19april1965/)) | 📧 holaabhisheksharma@gmail.com  
+
+---  
+
+## 📌 Get Ready to Code!  
+🔥 **Challenge Starts:** **April 1st, 2025**  
+✅ **Join Now & Make Your Code Count!**
