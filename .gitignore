@@ -1,0 +1,28 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore C++ build files
+*.o
+*.out
+*.exe
+*.obj
+*.dll
+
+# Ignore Java compiled files
+*.class
+*.jar
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+*.log
+
+# Ignore submissions from temporary users
+Submissions/temp/
