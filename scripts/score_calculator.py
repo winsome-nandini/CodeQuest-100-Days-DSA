@@ -16,9 +16,11 @@ HEADERS = {"Authorization": f"token {GITHUB_TOKEN}", "Accept": "application/vnd.
 def get_leaderboard():
     response = requests.get(GITHUB_API_URL, headers=HEADERS)
     if response.status_code == 200:
-        content = response.json()["content"]
-        return json.loads(requests.utils.unquote(content))  # Decode base64
-    return {"participants": []}  # Default if file doesn't exist
+        content = response.json().get("content", "")
+        if content:  # Ensure content is not empty
+            decoded_content = base64.b64decode(content).decode("utf-8")
+            return json.loads(decoded_content)  # Decode JSON properly
+    return {"participants": []}  # Default if file is empty or missing
 
 # Update leaderboard with new scores
 def update_leaderboard():
