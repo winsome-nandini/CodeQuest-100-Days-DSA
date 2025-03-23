@@ -15,6 +15,7 @@ Write a program that takes two integers as input and prints their sum.
 5
 3
 **Output:**  
+8
 
 ## 🔹 Example 2  
 **Input:**  
