@@ -32,6 +32,7 @@ submissions/
 │ ├── Day-82/
 │ │ ├── solution.cpp
 
+
 4. **Push Your Changes:**  
 - Commit and push your changes to GitHub.  
 - Create a **Pull Request** to submit your solutions.  
@@ -55,33 +56,36 @@ Head over to **[Day 81](Day-81/README.md)** to continue your journey. Good luck,
 <summary>📜 **Click to Expand: Daily Story Updates**</summary>
 
 ### **Day 81-85: The Glitch Strikes**  
-The Glitch launches a full-scale attack on the multiverse. You and Echo work together to stabilize the systems.  
+The Glitch launches a full-scale attack on the multiverse. You and Echo work together to stabilize the systems. 💥  
 
 ### **Day 86-90: Algorithmic Paradoxes**  
-You solve complex algorithmic puzzles to fix the paradoxes created by **The Glitch**.  
+You solve complex algorithmic puzzles to fix the paradoxes created by **The Glitch**. 🧩  
 
 ### **Day 91-95: The Source Code of Reality**  
-You enter the **Source Code of Reality** to confront **The Glitch** directly.  
+You enter the **Source Code of Reality** to confront **The Glitch** directly. 🌌  
 
 ### **Day 96-100: The Final Battle**  
-You use all your coding skills to defeat **The Glitch** and restore the multiverse.  
+You use all your coding skills to defeat **The Glitch** and restore the multiverse. 🏆  
 
 </details>
 
 ---
 
-<style>
-.glitch-text {
- animation: glitch 1s infinite;
-}
-@keyframes glitch {
- 0% { transform: translate(0); }
- 20% { transform: translate(-2px, 2px); }
- 40% { transform: translate(2px, -2px); }
- 60% { transform: translate(-2px, 2px); }
- 80% { transform: translate(2px, -2px); }
- 100% { transform: translate(0); }
-}
-</style>
+## **🔥 Final Showdown Progress Tracker**  
+Track your progress through the **Final Showdown** phase:  
 
-<p class="glitch-text">🔥 The fate of the multiverse is in your hands! 🔥</p>
+| Day Range | Status       |  
+|-----------|--------------|  
+| 81-85     | 🔓 Unlocked   |  
+| 86-90     | 🔒 Locked     |  
+| 91-95     | 🔒 Locked     |  
+| 96-100    | 🔒 Locked     |  
+
+---
+
+## **🌟 Pro Tip**  
+Use **emojis** in your code comments and notes to make your solutions more fun! For example:  
+```python
+# 🔥 Fixing the multiverse, one algorithm at a time! 🔥
+def stabilize_system(system):
+ return system.fix()
