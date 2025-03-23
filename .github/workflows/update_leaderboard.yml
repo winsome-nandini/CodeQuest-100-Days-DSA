@@ -1,9 +1,12 @@
-name: update Leaderboard
+name: Update Leaderboard
 
 on:
   schedule:
     - cron: '30 0 * * *'  # Runs every day at 12:30 AM
   workflow_dispatch:  # Allows manual triggering
+  
+permissions:
+  contents: write  # This allows the workflow to push changes
 
 jobs:
   update:
@@ -11,25 +14,34 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Updated to the latest version
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4  # Updated to the latest version
         with:
-          python-version: '3.x'
+          python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests pandas
 
       - name: Run leaderboard update script
-        run: python update_leaderboard.py
         env:
           CODEQUEST_ACCESS_TOKEN: ${{ secrets.CODEQUEST_ACCESS_TOKEN }}
+        run: python scripts/update_leaderboard.py
 
-      - name: Commit and push if changed
+      - name: Commit and Push Score Updates
+        env:
+          CODEQUEST_ACCESS_TOKEN: ${{ secrets.CODEQUEST_ACCESS_TOKEN }}
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+          git config --global user.name "CodeQuestBot"
+          git config --global user.email "bot@codequest.com"
+          git stash
+          git remote set-url origin https://${{ secrets.CODEQUEST_ACCESS_TOKEN }}@github.com/Abhishek-Sharma182005/CodeQuest-100-Days-DSA.git
+          
+          git pull --rebase origin main  # Prevents push conflicts
+          git stash pop || echo "No stashed changes to apply"
+          
           git add leaderboard.json
-          git commit -m "Update leaderboard" || echo "No changes to commit"
-          git push
+          git commit -m "Updated leaderboard" || echo "No changes to commit"
+          
+          git push origin main

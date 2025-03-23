@@ -5,6 +5,9 @@ on:
     - cron: "5 0 * * *"  # Runs daily at 12:05 AM
   workflow_dispatch:  # Allows manual triggering
 
+permissions:
+  contents: write  # Allows writing to repository
+
 jobs:
   scoring:
     runs-on: ubuntu-latest
@@ -22,13 +25,18 @@ jobs:
 
       - name: Fetch Submissions & Calculate Scores
         env:
-          GITHUB_TOKEN: ${{ secrets.CODEQUEST_ACCESS_TOKEN }}
+          CODEQUEST_ACCESS_TOKEN: ${{ secrets.CODEQUEST_ACCESS_TOKEN }}
         run: python scripts/score_calculator.py
 
       - name: Commit and Push Score Updates
         run: |
           git config --global user.name "CodeQuestBot"
           git config --global user.email "bot@codequest.com"
+          
+          git fetch origin main
+          git reset --hard origin/main
+          
           git add leaderboard.json
-          git commit -m "Updated leaderboard"
-          git push
+          git commit -m "Updated leaderboard" || echo "No changes to commit"
+          
+          git push origin main

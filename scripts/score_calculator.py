@@ -1,55 +1,56 @@
-import os
+import base64  # Required for decoding Base64 content
 import json
 import requests
-import pandas as pd
+import os
 
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-REPO_OWNER = "YourGitHubUsername"
-REPO_NAME = "CodeQuest"
-LEADERBOARD_FILE = "leaderboard.json"
+# GitHub API details
+GITHUB_TOKEN = os.getenv("CODEQUEST_ACCESS_TOKEN")
+REPO_OWNER = "Abhishek-Sharma182005"
+REPO_NAME = "CodeQuest-100-Days-DSA"
+FILE_PATH = "leaderboard.json"
 
-def fetch_pull_requests():
-    """Fetches all open pull requests from GitHub"""
-    url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/pulls?state=all"
-    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-    response = requests.get(url, headers=headers)
-    return response.json() if response.status_code == 200 else []
+# GitHub API URLs
+GITHUB_API_URL = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}"
+HEADERS = {"Authorization": f"token {GITHUB_TOKEN}", "Accept": "application/vnd.github.v3+json"}
 
-def analyze_code_quality(file_url):
-    """Checks code quality using Flake8 for Python files"""
-    response = requests.get(file_url)
+# Fetch the latest leaderboard file
+def get_leaderboard():
+    response = requests.get(GITHUB_API_URL, headers=HEADERS)
     if response.status_code == 200:
-        with open("temp.py", "w") as f:
-            f.write(response.text)
-        result = os.popen("flake8 temp.py --count").read().strip()
-        return 5 - int(result) if result.isdigit() else 5  # Score 0-5 based on errors
-    return 0
+        content = response.json().get("content", "")
+        if content:  # Ensure content is not empty
+            decoded_content = base64.b64decode(content).decode("utf-8")
+            return json.loads(decoded_content)  # Decode JSON properly
+    return {"participants": []}  # Default if file is empty or missing
 
+# Update leaderboard with new scores
 def update_leaderboard():
-    """Fetches PRs, assigns scores, and updates leaderboard"""
-    submissions = fetch_pull_requests()
-    leaderboard = {}
+    leaderboard = get_leaderboard()
+    
+    # Example score update logic (Modify as needed)
+    for participant in leaderboard["participants"]:
+        participant["total_score"] += 10  # Increment by 10 (or any logic)
+    
+    # Convert to JSON
+    updated_content = json.dumps(leaderboard, indent=4)
 
-    for pr in submissions:
-        user = pr["user"]["login"]
-        files_url = pr["url"] + "/files"
-        headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-        files_response = requests.get(files_url, headers=headers).json()
+    # Get the latest file SHA
+    response = requests.get(GITHUB_API_URL, headers=HEADERS)
+    file_sha = response.json()["sha"]
 
-        code_quality_score = 5
-        for file in files_response:
-            if file["filename"].endswith(".py"):
-                code_quality_score = analyze_code_quality(file["raw_url"])
+    # Update the file on GitHub
+    update_data = {
+        "message": "Automated leaderboard update",
+        "content": requests.utils.quote(updated_content),  # Encode to base64
+        "sha": file_sha  # Required to update the existing file
+    }
+    response = requests.put(GITHUB_API_URL, headers=HEADERS, json=update_data)
 
-        streak_points = 3 if user in leaderboard and leaderboard[user]["streak"] >= 7 else 0
+    if response.status_code == 200:
+        print("Leaderboard updated successfully on GitHub!")
+    else:
+        print(f"Error updating file: {response.text}")
 
-        leaderboard[user] = {
-            "total_score": leaderboard.get(user, {}).get("total_score", 0) + 10 + streak_points + code_quality_score,
-            "streak": leaderboard.get(user, {}).get("streak", 0) + 1
-        }
-
-    with open(LEADERBOARD_FILE, "w") as f:
-        json.dump(leaderboard, f, indent=4)
-
+# Run the update
 if __name__ == "__main__":
     update_leaderboard()
