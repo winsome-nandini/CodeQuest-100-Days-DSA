@@ -9,8 +9,8 @@ You enter a **magical world** where coding spells exist. A talking peacock named
 
 ## **🌟 Characters**  
 - **You:** The hero coder mastering coding spells.  
-- **Mayur:** A flamboyant talking peacock who loves dancing in the rain.  
-- **Corrupted AI Dragon:** A powerful foe guarding the key to stopping **The Glitch**.  
+- **Mayur:** A flamboyant talking peacock who loves dancing in the rain. 🦚  
+- **Corrupted AI Dragon:** A powerful foe guarding the key to stopping **The Glitch**. 🐲  
 
 ---
 
@@ -23,7 +23,7 @@ You enter a **magical world** where coding spells exist. A talking peacock named
    - For each day, create a subfolder inside your personal folder (e.g., `submissions/YourName/Day-61/`).  
    - Add your solution files (e.g., `solution.py`, `solution.cpp`) and optional notes (e.g., `notes.txt`).  
 
-3. **Example Structure:**  
+3. **Example Structure:**   
 submissions/
 ├── YourName/
 │ ├── Day-61/
@@ -59,27 +59,33 @@ Head over to **[Day 61](Day-61/README.md)** to continue your journey. Good luck,
 You meet **Mayur**, who introduces you to the magical world. Together, you learn basic coding spells.  
 
 ### **Day 66-70: The Enchanted Forest**  
-You explore the **Enchanted Forest**, solving puzzles to unlock new spells.  
+You explore the **Enchanted Forest**, solving puzzles to unlock new spells. 🌳✨  
 
 ### **Day 71-75: The Dragon’s Lair**  
-You face the **corrupted AI dragon** in its lair. Mayur helps you prepare for the battle.  
+You face the **corrupted AI dragon** in its lair. Mayur helps you prepare for the battle. 🐲⚔️  
 
 ### **Day 76-80: Defeating the Dragon**  
-You use your coding spells to defeat the dragon and recover the **Magical Artifact**.  
+You use your coding spells to defeat the dragon and recover the **Magical Artifact**. 🏆  
 
 </details>
 
 ---
 
-<style>
-.magical-text {
- animation: colorChange 2s infinite;
-}
-@keyframes colorChange {
- 0% { color: #ff00ff; }
- 50% { color: #00ffff; }
- 100% { color: #ff00ff; }
-}
-</style>
+## **✨ Magical World Progress Tracker**  
+Track your progress through the **Magical World** phase:  
 
-<p class="magical-text">✨ May the magic of coding be with you! ✨</p>
+| Day Range | Status       |  
+|-----------|--------------|  
+| 61-65     | 🔓 Unlocked   |  
+| 66-70     | 🔒 Locked     |  
+| 71-75     | 🔒 Locked     |  
+| 76-80     | 🔒 Locked     |  
+
+---
+
+## **🌟 Pro Tip**  
+Use **emojis** in your code comments and notes to make your solutions more fun! For example:  
+```python
+# ✨ Casting a spell to reverse the array! ✨
+def reverse_array(arr):
+ return arr[::-1]
