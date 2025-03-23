@@ -23,6 +23,7 @@ __pycache__/
 .vscode/
 .idea/
 *.log
+*.env
 
 # Ignore submissions from temporary users
 Submissions/temp/
