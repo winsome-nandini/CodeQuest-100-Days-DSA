@@ -1,7 +1,11 @@
-# 📌 CodeQuest: The Ultimate 100-Day DSA Challenge
+# 📈 CodeQuest: The Ultimate 100-Day DSA Challenge
 
 🚀 **Open to All, Exclusive Rewards for Techtronica Members**  
 🔹 **Hosted by Code-e-phobia Club** under **Techtronica Society, Department of ECE, GLA University**  
+
+**💡 Code Every Day, Build Your Future!**
+
+---
 
 ## 🏆 About CodeQuest  
 CodeQuest is a **100-day open coding challenge** designed to help students master **Data Structures & Algorithms (DSA)** through consistent problem-solving.  
@@ -12,10 +16,10 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 ---  
 
 ## 🎯 Event Structure  
-📖 **Daily DSA Challenges** – Problems posted on GitHub & LinkedIn at **12 AM daily**.  
-👨‍🏫 **Mentorship** – Get guidance from **2 expert mentors**.  
+📚 **Daily DSA Challenges** – Problems posted on GitHub & LinkedIn at **12 AM daily**.  
+👨‍🎓 **Mentorship** – Get guidance from **expert mentors**.  
 🏅 **Win Rewards** – Top **3 Techtronica members** get exciting prizes!  
-📜 **E-Certificates** – Available for **all active participants**.  
+📝 **E-Certificates** – Available for **all active participants**.  
 📢 **Weekly Leaderboard** – Featuring **top coders from all participants**.  
 
 ---  
@@ -40,7 +44,7 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 
 ---  
 
-## 📜 Scoring System  
+## 📝 Scoring System  
 - **Daily Problem Solving**: +2 points per correctly solved problem.  
 - **Code Quality & Optimization**: +1 point for well-documented & optimized code.  
 - **Social Media Posting**: +0.5 points per day for posting progress with **#TechtronicaCodeChallenge**.  
@@ -64,28 +68,62 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 📍 **Post on Social Media:** Share your progress daily on LinkedIn, Twitter, or Instagram using **#TechtronicaCodeChallenge** and tag Techtronica Society.  
 📍 **Track Your Score:** Stay updated with the weekly leaderboard on GitHub.  
 
-### 📌 How to Fork & Submit Your Code  
-1️⃣ **Fork this repository** on GitHub.  
-2️⃣ **Clone your fork** to your local machine using:
-   ```sh
-   git clone https://github.com/your-username/CodeQuest.git
-   ```
-3️⃣ **Create a new branch** for each day's solution:
-   ```sh
-   git checkout -b day-1-solution
-   ```
-4️⃣ **Add and commit your solution**:
-   ```sh
-   git add .
-   git commit -m "Added Day 1 solution"
-   ```
-5️⃣ **Push your branch to GitHub**:
-   ```sh
-   git push origin day-1-solution
-   ```
-6️⃣ **Submit a Pull Request** to the main repository.  
+---  
 
-📢 **Our mentors will review your submissions & update the leaderboard!**  
+## 📁 Submission Guidelines & Folder Structure  
+Each participant will create a **personal folder** inside the `submissions/` directory. Every day, they will add a new folder for that day's solution.   
+
+### **Folder & File Structure**
+```bash
+submissions/
+   ├── YourName/
+   │   ├── Day-1/
+   │   │   ├── solution.py  # or solution.cpp, solution.java, etc.
+   │   │   ├── notes.txt    # (optional notes)
+   │   ├── Day-2/
+   │   │   ├── solution.cpp
+   │   ├── Day-3/
+   │   │   ├── solution.java
+```
+📌 **Rules:**
+- **Only create your folder once** inside `submissions/`.
+- **Each day, add a new subfolder (`Day-1`, `Day-2`, ..., `Day-100`).**
+- **Use any programming language.**  
+
+---  
+
+## 🔄 How to Submit Using GitHub Desktop
+
+1️⃣ **Fork the repository** on GitHub.  
+2️⃣ **Open GitHub Desktop**, click **File > Clone Repository**, and select your forked repository.  
+3️⃣ **Navigate to `submissions/` and create your personal folder** (only once).  
+4️⃣ **Every day, create a new folder inside your personal folder (`Day-1`, `Day-2`, etc.).**  
+5️⃣ **Add your solution files inside the respective day's folder.**  
+6️⃣ **Open GitHub Desktop, click "Commit", add a meaningful message, and click "Push".**  
+7️⃣ **Go to GitHub and submit a Pull Request.**  
+
+📢 **Mentors will review your submissions & update the leaderboard!**  
+
+---  
+
+## 🔄 How to Submit Using Git Commands
+```bash
+# Fork the repository and clone your fork
+$ git clone https://github.com/your-username/CodeQuest-100-Days-DSA.git
+$ cd CodeQuest-100-Days-DSA
+
+# Create a new branch for the day's submission
+$ git checkout -b day-1-solution
+
+# Add your solution inside your personal folder
+$ git add .
+$ git commit -m "Added Day 1 solution"
+
+# Push your changes and create a pull request
+$ git push origin day-1-solution
+```
+
+📌 **If you want structured submissions and easier PR reviews ➝ Use a new branch daily (Option 1).**
 
 ---  
 
@@ -108,3 +146,4 @@ CodeQuest is a **100-day open coding challenge** designed to help students maste
 ## 📌 Get Ready to Code!  
 🔥 **Challenge Starts:** **April 1st, 2025**  
 ✅ **Join Now & Make Your Code Count!**
+
