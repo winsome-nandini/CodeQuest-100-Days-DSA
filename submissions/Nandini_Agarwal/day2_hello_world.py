@@ -1,2 +1,2 @@
 a=input("")
-print("Welcome to the adventure, ",a,"!")
+print("Welcome to the adventure,",a+"!")
