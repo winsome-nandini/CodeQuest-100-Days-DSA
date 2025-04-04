@@ -1,0 +1,31 @@
+import json
+import requests
+import os
+
+# Load existing scores or create an empty dictionary
+SCORES_FILE = "scores.json"
+
+if os.path.exists(SCORES_FILE):
+    with open(SCORES_FILE, "r") as file:
+        scores = json.load(file)
+else:
+    scores = {}
+
+# GitHub API Request
+repo = os.getenv("GITHUB_REPOSITORY")  # Fetch repo from GitHub Actions
+headers = {"Authorization": f"token {os.getenv('GITHUB_TOKEN')}"}
+url = f"https://api.github.com/repos/{repo}/pulls?state=closed"
+
+response = requests.get(url, headers=headers)
+merged_prs = [pr for pr in response.json() if pr.get("merged_at")]
+
+# Update scores
+for pr in merged_prs:
+    username = pr["user"]["login"]
+    scores[username] = scores.get(username, 0) + 3
+
+# Save updated scores
+with open(SCORES_FILE, "w") as file:
+    json.dump(scores, file, indent=4)
+
+print("Scores updated successfully!")
