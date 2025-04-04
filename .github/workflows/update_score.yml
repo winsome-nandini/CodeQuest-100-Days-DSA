@@ -1,6 +1,5 @@
-- name: Debug - List Files
+name: Debug - List Files
         run: ls -R
-on:
 name: Update Scores
 
   schedule:
