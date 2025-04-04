@@ -1,31 +1,37 @@
 import json
-import requests
 import os
+from github import Github
 
-# Load existing scores or create an empty dictionary
+# GitHub Token & Repo Name
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+REPO_NAME = os.getenv("REPO_NAME")
+
+# Initialize GitHub API
+g = Github(GITHUB_TOKEN)
+repo = g.get_repo(REPO_NAME)
+
+# Load existing scores
 SCORES_FILE = "scores.json"
-
-if os.path.exists(SCORES_FILE):
-    with open(SCORES_FILE, "r") as file:
-        scores = json.load(file)
-else:
+try:
+    with open(SCORES_FILE, "r") as f:
+        scores = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError):
     scores = {}
 
-# GitHub API Request
-repo = os.getenv("GITHUB_REPOSITORY")  # Fetch repo from GitHub Actions
-headers = {"Authorization": f"token {os.getenv('GITHUB_TOKEN')}"}
-url = f"https://api.github.com/repos/{repo}/pulls?state=closed"
+# Get merged PRs in the last 24 hours
+merged_prs = repo.get_pulls(state="closed", sort="updated", direction="desc")
+updated_users = set()
 
-response = requests.get(url, headers=headers)
-merged_prs = [pr for pr in response.json() if pr.get("merged_at")]
-
-# Update scores
 for pr in merged_prs:
-    username = pr["user"]["login"]
-    scores[username] = scores.get(username, 0) + 3
+    if pr.merged:  # Check if PR is actually merged
+        username = pr.user.login
+        updated_users.add(username)
+
+        # Add 3 points per merged PR
+        scores[username] = scores.get(username, 0) + 3
 
 # Save updated scores
-with open(SCORES_FILE, "w") as file:
-    json.dump(scores, file, indent=4)
+with open(SCORES_FILE, "w") as f:
+    json.dump(scores, f, indent=4)
 
-print("Scores updated successfully!")
+print(f"Updated scores: {scores}")
