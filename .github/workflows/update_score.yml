@@ -1,5 +1,4 @@
-name: Debug - List Files
-        run: ls -R
+
 name: Update Scores
 
   schedule:
