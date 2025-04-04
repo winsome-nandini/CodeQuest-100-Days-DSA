@@ -1,37 +1,23 @@
 import json
 import os
-from github import Github
 
-# GitHub Token & Repo Name
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-REPO_NAME = os.getenv("REPO_NAME")
+file = "scores.json"
 
-# Initialize GitHub API
-g = Github(GITHUB_TOKEN)
-repo = g.get_repo(REPO_NAME)
-
-# Load existing scores
-SCORES_FILE = "scores.json"
-try:
-    with open(SCORES_FILE, "r") as f:
+# Load or initialize the scores file
+if os.path.exists(file):
+    with open(file, 'r') as f:
         scores = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError):
+else:
     scores = {}
 
-# Get merged PRs in the last 24 hours
-merged_prs = repo.get_pulls(state="closed", sort="updated", direction="desc")
-updated_users = set()
+# Example username — in real script you’d extract this from PRs
+username = "Abhishek-Sharma182005"
 
-for pr in merged_prs:
-    if pr.merged:  # Check if PR is actually merged
-        username = pr.user.login
-        updated_users.add(username)
+# Update score
+scores[username] = scores.get(username, 0) + 3
 
-        # Add 3 points per merged PR
-        scores[username] = scores.get(username, 0) + 3
+# Save back
+with open(file, 'w') as f:
+    json.dump(scores, f, indent=2)
 
-# Save updated scores
-with open(SCORES_FILE, "w") as f:
-    json.dump(scores, f, indent=4)
-
-print(f"Updated scores: {scores}")
+print(f"Updated score for {username}")
