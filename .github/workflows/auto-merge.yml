@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Auto Approve All Open PRs
-        uses: peter-evans/approve-pull-request@v5
+        uses: peter-evans/approve-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           approve-all: true
