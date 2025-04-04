@@ -1,0 +1,6 @@
+# Take input from user and convert it to an integer
+num = int(input("Enter a number: "))
+# then convert it to a string and iterate over each digit, converting it back to an integer and summing them up
+sum = sum(int(i) for i in str(num))
+print(f"Sum of digits: {' + '.join(str(num))} = {sum}") 
+# The digits are joined with ' + ' for readability, and the sum is displayed at the end
