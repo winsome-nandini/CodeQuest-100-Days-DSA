@@ -1,5 +1,7 @@
-name: Update Scores
 
+name: Update Scores
+- name: Debug - List Files
+        run: ls -R
 on:
   schedule:
     - cron: '0 0 * * *'  # Runs every 24 hours
