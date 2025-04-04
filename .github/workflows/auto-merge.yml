@@ -1,28 +1,28 @@
-name: Auto Merge Pull Requests
+name: Auto Approve and Merge PRs
 
 on:
   schedule:
-    - cron: "29 18 * * *"  # Runs daily at 11:59 PM IST
-  workflow_dispatch:
+    - cron: "29 18 * * *"  # 11:59 PM IST (UTC+5:30)
+  workflow_dispatch:       # Manual trigger
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  merge-prs:
+  approve-and-merge:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Auto Approve All Open PRs
-        uses: peter-evans/approve-pull-request@ef2a73bd55b999d50df4a0aa38ad40e7b37ef31a
+      - name: Auto Approve PRs
+        uses: peter-evans/approve-pull-request@v4.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           approve-all: true
 
-      - name: Auto Merge Pull Requests
+      - name: Auto Merge PRs
         uses: pascalgn/automerge-action@v0.15.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
