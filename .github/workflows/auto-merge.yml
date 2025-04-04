@@ -3,26 +3,26 @@ name: Auto Approve and Merge PRs
 on:
   schedule:
     - cron: "29 18 * * *"  # 11:59 PM IST (UTC+5:30)
-  workflow_dispatch:       # Manual trigger
+  workflow_dispatch:
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  approve-and-merge:
+  auto-approve-and-merge:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Auto Approve PRs
-        uses: peter-evans/approve-pull-request@v4.1.0
+      - name: Auto approve pull requests
+        uses: peter-evans/approve-pull-request@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           approve-all: true
 
-      - name: Auto Merge PRs
+      - name: Auto merge pull requests
         uses: pascalgn/automerge-action@v0.15.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
