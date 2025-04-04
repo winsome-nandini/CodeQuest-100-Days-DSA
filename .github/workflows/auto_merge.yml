@@ -2,32 +2,57 @@ name: Auto Approve and Merge PRs
 
 on:
   schedule:
-    - cron: '29 18 * * *'  # Runs at 11:59 PM UTC daily
-  workflow_dispatch:       # Allows manual triggering
+    - cron: '29 18 * * *'  # 11:59 PM IST (convert to UTC)
+  workflow_dispatch:       # Allow manual trigger
 
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Auto approve PR
-        uses: peter-evans/approve-pull-request@v4
-        with:
-          pull-request-number: 1  # Update this dynamically if needed
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Python dependencies
+        run: pip install requests
 
-      - name: Merge PR
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const prNumber = 1; // Update if needed
-            await github.pulls.merge({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: prNumber,
-              merge_method: 'squash'
-            });
+      - name: Approve and Merge PRs using Python
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 <<EOF
+          import os
+          import requests
+
+          token = os.environ['GITHUB_TOKEN']
+          repo = os.environ['REPO']
+          headers = {
+              'Authorization': f'token {token}',
+              'Accept': 'application/vnd.github.v3+json'
+          }
+
+          # List open pull requests
+          pr_url = f'https://api.github.com/repos/{repo}/pulls'
+          prs = requests.get(pr_url, headers=headers).json()
+
+          for pr in prs:
+              pr_number = pr['number']
+              print(f'Processing PR #{pr_number}')
+
+              # Approve the PR
+              approve_url = f'https://api.github.com/repos/{repo}/pulls/{pr_number}/reviews'
+              approve_payload = {
+                  "event": "APPROVE"
+              }
+              approve_resp = requests.post(approve_url, headers=headers, json=approve_payload)
+              print(f"Approval status: {approve_resp.status_code} {approve_resp.text}")
+
+              # Merge the PR
+              merge_url = f'https://api.github.com/repos/{repo}/pulls/{pr_number}/merge'
+              merge_payload = {
+                  "merge_method": "squash"
+              }
+              merge_resp = requests.put(merge_url, headers=headers, json=merge_payload)
+              print(f"Merge status: {merge_resp.status_code} {merge_resp.text}")
+          EOF
