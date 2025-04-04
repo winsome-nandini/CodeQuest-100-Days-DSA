@@ -2,7 +2,7 @@ name: Update Scores
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs every 24 hours
+    - cron: '35 18 * * *'  # Runs at 12:05 AM IST (after PRs are merged)
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
       - name: Run Score Updater
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO_NAME: ${{ github.repository }}  # Owner/Repo format
+          REPO_NAME: ${{ github.repository }}
         run: python update_scores.py
 
       - name: Commit and Push Changes
