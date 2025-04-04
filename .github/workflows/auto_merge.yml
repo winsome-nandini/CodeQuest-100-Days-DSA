@@ -1,0 +1,57 @@
+name: Auto Approve & Merge PR using Python
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr-number:
+        description: 'Pull Request Number'
+        required: true
+        type: number
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: Auto Approve & Merge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ inputs.pr-number }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 <<EOF
+          import os
+          import requests
+
+          token = os.getenv("GITHUB_TOKEN")
+          pr_number = os.getenv("PR_NUMBER")
+          repo = os.getenv("REPO")
+          headers = {
+              "Authorization": f"Bearer {token}",
+              "Accept": "application/vnd.github+json"
+          }
+
+          # Approve PR
+          review_url = f"https://api.github.com/repos/{repo}/pulls/{pr_number}/reviews"
+          review_payload = {
+              "event": "APPROVE"
+          }
+          response = requests.post(review_url, json=review_payload, headers=headers)
+          print("Approval status:", response.status_code, response.text)
+
+          # Merge PR
+          merge_url = f"https://api.github.com/repos/{repo}/pulls/{pr_number}/merge"
+          merge_payload = {
+              "merge_method": "squash"
+          }
+          response = requests.put(merge_url, json=merge_payload, headers=headers)
+          print("Merge status:", response.status_code, response.text)
+          EOF
