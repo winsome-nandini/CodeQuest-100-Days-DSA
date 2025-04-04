@@ -3,7 +3,7 @@ name: Auto Merge Pull Requests
 on:
   schedule:
     - cron: "29 18 * * *"  # Runs daily at 11:59 PM IST
-  workflow_dispatch:       # Allows manual trigger
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Auto Approve All Open PRs
-        uses: peter-evans/approve-pull-request@v3
+        uses: peter-evans/approve-pull-request@ef2a73bd55b999d50df4a0aa38ad40e7b37ef31a
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           approve-all: true
