@@ -1,8 +1,8 @@
-
-name: Update Scores
 - name: Debug - List Files
         run: ls -R
 on:
+name: Update Scores
+
   schedule:
     - cron: '0 0 * * *'  # Runs every 24 hours
   workflow_dispatch:
