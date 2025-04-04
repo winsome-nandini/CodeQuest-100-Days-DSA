@@ -3,7 +3,7 @@ name: Auto Merge Pull Requests
 on:
   schedule:
     - cron: "29 18 * * *"  # Runs daily at 11:59 PM IST
-  workflow_dispatch:
+  workflow_dispatch:       # Allows manual trigger
 
 permissions:
   contents: write
