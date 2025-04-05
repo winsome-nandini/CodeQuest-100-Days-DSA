@@ -1,31 +1,33 @@
 {
   "users": {
-    "ABUZAR-2003": 0,
-    "22MH1A04H3": 0,
-    "Avantikaay": 0,
-    "Utkarsh-0003": 0,
-    "Madhumita-127": 0,
-    "winsome-nandini": 0,
-    "Abhishek05eccs": 0,
-    "Ayush-vishwakarma-git": 0,
-    "digambarsingh14": 0,
-    "palakrawat30": 0,
-    "Harshit-Ram": 0,
-    "Tusharsharma1827": 0,
-    "Devilwelcometohell": 0,
-    "shagun111484": 0,
-    "Aditya-KumarEC": 0,
-    "User8085": 0,
-    "bhumikadixit05": 0,
-    "Samriddhiii89": 0,
-    "ayushman2710": 0,
-    "Abhishek-Sharma182005": 0,
+    "ABUZAR-2003": 15,
+    "22MH1A04H3": 12,
+    "Avantikaay": 15,
+    "Utkarsh-0003": 9,
+    "Madhumita-127": 6,
+    "winsome-nandini": 15,
+    "Abhishek05eccs": 6,
+    "Ayush-vishwakarma-git": 15,
+    "digambarsingh14": 9,
+    "palakrawat30": 12,
+    "Harshit-Ram": 15,
+    "Tusharsharma1827": 15,
+    "Devilwelcometohell": 12,
+    "shagun111484": 12,
+    "Aditya-KumarEC": 3,
+    "User8085": 3,
+    "bhumikadixit05": 6,
+    "Samriddhiii89": 3,
+    "ayushman2710": 3,
+    "Abhishek-Sharma182005": 15,
     "Mohan18Kumar": 0
   },
   "metadata": {
-    "generated_at": "2025-04-05T08:03:13.381581",
-    "total_users": 21,
-    "total_prs": 80
+    "event": "April 1-5 PR Challenge",
+    "points_per_pr": 3,
+    "max_points": 15,
+    "calculated_at": "2025-04-05T08:26:54.072699+00:00",
+    "total_participants": 21
   },
   "history": [
     {
@@ -153,6 +155,475 @@
       "points": 0,
       "date": "2025-03-31T13:32:52+00:00",
       "reason": "Initial PR detected"
+    },
+    {
+      "username": "Tusharsharma1827",
+      "points": 3,
+      "date": "2025-04-05T08:18:58+00:00",
+      "pr_number": 81,
+      "reason": "April 1-5 Event: 3 points for PR #81"
+    },
+    {
+      "username": "ABUZAR-2003",
+      "points": 3,
+      "date": "2025-04-05T05:10:16+00:00",
+      "pr_number": 80,
+      "reason": "April 1-5 Event: 3 points for PR #80"
+    },
+    {
+      "username": "22MH1A04H3",
+      "points": 3,
+      "date": "2025-04-05T04:40:34+00:00",
+      "pr_number": 79,
+      "reason": "April 1-5 Event: 3 points for PR #79"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "date": "2025-04-05T04:25:22+00:00",
+      "pr_number": 78,
+      "reason": "April 1-5 Event: 3 points for PR #78"
+    },
+    {
+      "username": "Utkarsh-0003",
+      "points": 3,
+      "date": "2025-04-05T04:23:41+00:00",
+      "pr_number": 77,
+      "reason": "April 1-5 Event: 3 points for PR #77"
+    },
+    {
+      "username": "Madhumita-127",
+      "points": 3,
+      "date": "2025-04-05T03:03:43+00:00",
+      "pr_number": 76,
+      "reason": "April 1-5 Event: 3 points for PR #76"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "date": "2025-04-05T01:55:30+00:00",
+      "pr_number": 75,
+      "reason": "April 1-5 Event: 3 points for PR #75"
+    },
+    {
+      "username": "Abhishek05eccs",
+      "points": 3,
+      "date": "2025-04-04T18:22:46+00:00",
+      "pr_number": 74,
+      "reason": "April 1-5 Event: 3 points for PR #74"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "date": "2025-04-04T18:10:47+00:00",
+      "pr_number": 73,
+      "reason": "April 1-5 Event: 3 points for PR #73"
+    },
+    {
+      "username": "digambarsingh14",
+      "points": 3,
+      "date": "2025-04-04T18:07:54+00:00",
+      "pr_number": 72,
+      "reason": "April 1-5 Event: 3 points for PR #72"
+    },
+    {
+      "username": "Madhumita-127",
+      "points": 3,
+      "date": "2025-04-04T16:47:32+00:00",
+      "pr_number": 71,
+      "reason": "April 1-5 Event: 3 points for PR #71"
+    },
+    {
+      "username": "palakrawat30",
+      "points": 3,
+      "date": "2025-04-04T16:03:15+00:00",
+      "pr_number": 70,
+      "reason": "April 1-5 Event: 3 points for PR #70"
+    },
+    {
+      "username": "Harshit-Ram",
+      "points": 3,
+      "date": "2025-04-04T15:47:18+00:00",
+      "pr_number": 69,
+      "reason": "April 1-5 Event: 3 points for PR #69"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "date": "2025-04-04T11:27:43+00:00",
+      "pr_number": 68,
+      "reason": "April 1-5 Event: 3 points for PR #68"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "date": "2025-04-04T11:17:35+00:00",
+      "pr_number": 67,
+      "reason": "April 1-5 Event: 3 points for PR #67"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "date": "2025-04-04T11:00:50+00:00",
+      "pr_number": 66,
+      "reason": "April 1-5 Event: 3 points for PR #66"
+    },
+    {
+      "username": "Tusharsharma1827",
+      "points": 3,
+      "date": "2025-04-04T08:46:58+00:00",
+      "pr_number": 65,
+      "reason": "April 1-5 Event: 3 points for PR #65"
+    },
+    {
+      "username": "Devilwelcometohell",
+      "points": 3,
+      "date": "2025-04-04T06:47:12+00:00",
+      "pr_number": 64,
+      "reason": "April 1-5 Event: 3 points for PR #64"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "date": "2025-04-04T04:59:21+00:00",
+      "pr_number": 63,
+      "reason": "April 1-5 Event: 3 points for PR #63"
+    },
+    {
+      "username": "shagun111484",
+      "points": 3,
+      "date": "2025-04-04T01:52:27+00:00",
+      "pr_number": 62,
+      "reason": "April 1-5 Event: 3 points for PR #62"
+    },
+    {
+      "username": "ABUZAR-2003",
+      "points": 3,
+      "date": "2025-04-03T20:36:47+00:00",
+      "pr_number": 61,
+      "reason": "April 1-5 Event: 3 points for PR #61"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "date": "2025-04-03T19:03:21+00:00",
+      "pr_number": 60,
+      "reason": "April 1-5 Event: 3 points for PR #60"
+    },
+    {
+      "username": "Aditya-KumarEC",
+      "points": 3,
+      "date": "2025-04-03T16:09:50+00:00",
+      "pr_number": 58,
+      "reason": "April 1-5 Event: 3 points for PR #58"
+    },
+    {
+      "username": "digambarsingh14",
+      "points": 3,
+      "date": "2025-04-03T15:48:39+00:00",
+      "pr_number": 57,
+      "reason": "April 1-5 Event: 3 points for PR #57"
+    },
+    {
+      "username": "shagun111484",
+      "points": 3,
+      "date": "2025-04-03T15:32:43+00:00",
+      "pr_number": 56,
+      "reason": "April 1-5 Event: 3 points for PR #56"
+    },
+    {
+      "username": "Devilwelcometohell",
+      "points": 3,
+      "date": "2025-04-03T13:30:24+00:00",
+      "pr_number": 55,
+      "reason": "April 1-5 Event: 3 points for PR #55"
+    },
+    {
+      "username": "User8085",
+      "points": 3,
+      "date": "2025-04-03T08:15:51+00:00",
+      "pr_number": 54,
+      "reason": "April 1-5 Event: 3 points for PR #54"
+    },
+    {
+      "username": "Tusharsharma1827",
+      "points": 3,
+      "date": "2025-04-03T03:47:28+00:00",
+      "pr_number": 53,
+      "reason": "April 1-5 Event: 3 points for PR #53"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "date": "2025-04-03T03:09:27+00:00",
+      "pr_number": 52,
+      "reason": "April 1-5 Event: 3 points for PR #52"
+    },
+    {
+      "username": "ABUZAR-2003",
+      "points": 3,
+      "date": "2025-04-03T01:00:56+00:00",
+      "pr_number": 51,
+      "reason": "April 1-5 Event: 3 points for PR #51"
+    },
+    {
+      "username": "Abhishek05eccs",
+      "points": 3,
+      "date": "2025-04-02T17:59:20+00:00",
+      "pr_number": 50,
+      "reason": "April 1-5 Event: 3 points for PR #50"
+    },
+    {
+      "username": "22MH1A04H3",
+      "points": 3,
+      "date": "2025-04-02T17:58:29+00:00",
+      "pr_number": 49,
+      "reason": "April 1-5 Event: 3 points for PR #49"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "date": "2025-04-02T17:57:07+00:00",
+      "pr_number": 48,
+      "reason": "April 1-5 Event: 3 points for PR #48"
+    },
+    {
+      "username": "palakrawat30",
+      "points": 3,
+      "date": "2025-04-02T17:39:53+00:00",
+      "pr_number": 47,
+      "reason": "April 1-5 Event: 3 points for PR #47"
+    },
+    {
+      "username": "Harshit-Ram",
+      "points": 3,
+      "date": "2025-04-02T17:38:53+00:00",
+      "pr_number": 46,
+      "reason": "April 1-5 Event: 3 points for PR #46"
+    },
+    {
+      "username": "Utkarsh-0003",
+      "points": 3,
+      "date": "2025-04-02T17:34:41+00:00",
+      "pr_number": 45,
+      "reason": "April 1-5 Event: 3 points for PR #45"
+    },
+    {
+      "username": "Tusharsharma1827",
+      "points": 3,
+      "date": "2025-04-02T16:12:31+00:00",
+      "pr_number": 44,
+      "reason": "April 1-5 Event: 3 points for PR #44"
+    },
+    {
+      "username": "palakrawat30",
+      "points": 3,
+      "date": "2025-04-02T16:08:51+00:00",
+      "pr_number": 43,
+      "reason": "April 1-5 Event: 3 points for PR #43"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "date": "2025-04-02T16:05:26+00:00",
+      "pr_number": 42,
+      "reason": "April 1-5 Event: 3 points for PR #42"
+    },
+    {
+      "username": "Harshit-Ram",
+      "points": 3,
+      "date": "2025-04-02T16:02:24+00:00",
+      "pr_number": 41,
+      "reason": "April 1-5 Event: 3 points for PR #41"
+    },
+    {
+      "username": "digambarsingh14",
+      "points": 3,
+      "date": "2025-04-02T15:32:00+00:00",
+      "pr_number": 40,
+      "reason": "April 1-5 Event: 3 points for PR #40"
+    },
+    {
+      "username": "shagun111484",
+      "points": 3,
+      "date": "2025-04-02T14:25:18+00:00",
+      "pr_number": 39,
+      "reason": "April 1-5 Event: 3 points for PR #39"
+    },
+    {
+      "username": "shagun111484",
+      "points": 3,
+      "date": "2025-04-02T14:15:26+00:00",
+      "pr_number": 38,
+      "reason": "April 1-5 Event: 3 points for PR #38"
+    },
+    {
+      "username": "Devilwelcometohell",
+      "points": 3,
+      "date": "2025-04-02T13:47:02+00:00",
+      "pr_number": 37,
+      "reason": "April 1-5 Event: 3 points for PR #37"
+    },
+    {
+      "username": "ABUZAR-2003",
+      "points": 3,
+      "date": "2025-04-02T13:23:17+00:00",
+      "pr_number": 36,
+      "reason": "April 1-5 Event: 3 points for PR #36"
+    },
+    {
+      "username": "22MH1A04H3",
+      "points": 3,
+      "date": "2025-04-02T08:53:35+00:00",
+      "pr_number": 35,
+      "reason": "April 1-5 Event: 3 points for PR #35"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "date": "2025-04-02T07:48:31+00:00",
+      "pr_number": 34,
+      "reason": "April 1-5 Event: 3 points for PR #34"
+    },
+    {
+      "username": "Utkarsh-0003",
+      "points": 3,
+      "date": "2025-04-02T03:18:26+00:00",
+      "pr_number": 33,
+      "reason": "April 1-5 Event: 3 points for PR #33"
+    },
+    {
+      "username": "bhumikadixit05",
+      "points": 3,
+      "date": "2025-04-01T18:29:40+00:00",
+      "pr_number": 31,
+      "reason": "April 1-5 Event: 3 points for PR #31"
+    },
+    {
+      "username": "bhumikadixit05",
+      "points": 3,
+      "date": "2025-04-01T18:23:57+00:00",
+      "pr_number": 30,
+      "reason": "April 1-5 Event: 3 points for PR #30"
+    },
+    {
+      "username": "Samriddhiii89",
+      "points": 3,
+      "date": "2025-04-01T17:33:23+00:00",
+      "pr_number": 27,
+      "reason": "April 1-5 Event: 3 points for PR #27"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "date": "2025-04-01T17:25:32+00:00",
+      "pr_number": 26,
+      "reason": "April 1-5 Event: 3 points for PR #26"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "date": "2025-04-01T17:21:33+00:00",
+      "pr_number": 25,
+      "reason": "April 1-5 Event: 3 points for PR #25"
+    },
+    {
+      "username": "Tusharsharma1827",
+      "points": 3,
+      "date": "2025-04-01T17:21:28+00:00",
+      "pr_number": 24,
+      "reason": "April 1-5 Event: 3 points for PR #24"
+    },
+    {
+      "username": "ayushman2710",
+      "points": 3,
+      "date": "2025-04-01T17:20:05+00:00",
+      "pr_number": 23,
+      "reason": "April 1-5 Event: 3 points for PR #23"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "date": "2025-04-01T17:16:40+00:00",
+      "pr_number": 22,
+      "reason": "April 1-5 Event: 3 points for PR #22"
+    },
+    {
+      "username": "22MH1A04H3",
+      "points": 3,
+      "date": "2025-04-01T17:06:29+00:00",
+      "pr_number": 21,
+      "reason": "April 1-5 Event: 3 points for PR #21"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "date": "2025-04-01T16:57:05+00:00",
+      "pr_number": 20,
+      "reason": "April 1-5 Event: 3 points for PR #20"
+    },
+    {
+      "username": "Devilwelcometohell",
+      "points": 3,
+      "date": "2025-04-01T16:37:46+00:00",
+      "pr_number": 19,
+      "reason": "April 1-5 Event: 3 points for PR #19"
+    },
+    {
+      "username": "palakrawat30",
+      "points": 3,
+      "date": "2025-04-01T16:35:30+00:00",
+      "pr_number": 18,
+      "reason": "April 1-5 Event: 3 points for PR #18"
+    },
+    {
+      "username": "ABUZAR-2003",
+      "points": 3,
+      "date": "2025-04-01T15:16:33+00:00",
+      "pr_number": 16,
+      "reason": "April 1-5 Event: 3 points for PR #16"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "date": "2025-04-01T15:11:28+00:00",
+      "pr_number": 15,
+      "reason": "April 1-5 Event: 3 points for PR #15"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "date": "2025-04-01T15:09:05+00:00",
+      "pr_number": 14,
+      "reason": "April 1-5 Event: 3 points for PR #14"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "date": "2025-04-01T15:01:08+00:00",
+      "pr_number": 13,
+      "reason": "April 1-5 Event: 3 points for PR #13"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "date": "2025-04-01T13:48:19+00:00",
+      "pr_number": 12,
+      "reason": "April 1-5 Event: 3 points for PR #12"
+    },
+    {
+      "username": "Harshit-Ram",
+      "points": 3,
+      "date": "2025-04-01T13:38:23+00:00",
+      "pr_number": 10,
+      "reason": "April 1-5 Event: 3 points for PR #10"
+    },
+    {
+      "username": "Harshit-Ram",
+      "points": 3,
+      "date": "2025-04-01T12:56:00+00:00",
+      "pr_number": 9,
+      "reason": "April 1-5 Event: 3 points for PR #9"
     }
   ]
 }
