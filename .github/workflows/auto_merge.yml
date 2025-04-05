@@ -20,13 +20,14 @@ jobs:
           fetch-depth: 0
           ref: main
 
-      - name: Setup Git
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install requests pygithub
+        run: |
+          pip install PyGithub
 
       - name: Process PRs and update points
         env:
@@ -34,59 +35,85 @@ jobs:
         run: |
           python3 <<'EOF'
           import os
+          import json
           from datetime import datetime
           from github import Github
+          from github.GithubException import GithubException
 
           # Initialize
           token = os.environ['GITHUB_TOKEN']
           g = Github(token)
-          repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
+          repo_name = os.environ['GITHUB_REPOSITORY']
+          repo = g.get_repo(repo_name)
 
           # Load or create points.json
           try:
               contents = repo.get_contents("points.json")
-              points_data = eval(contents.decoded_content.decode())
-          except:
+              points_data = json.loads(contents.decoded_content.decode())
+              file_sha = contents.sha
+          except Exception as e:
+              print(f"Creating new points.json: {str(e)}")
               points_data = {"users": {}, "history": []}
+              file_sha = None
 
           # Process PRs
           for pr in repo.get_pulls(state='open'):
-              print(f"Processing PR #{pr.number} by @{pr.user.login}")
+              print(f"\nProcessing PR #{pr.number} by @{pr.user.login}")
               
+              # Skip if PR has merge conflicts
+              if pr.mergeable_state == "dirty":
+                  print(f"Skipping PR #{pr.number} due to merge conflicts")
+                  continue
+                  
               # Approve PR
               try:
                   pr.create_review(event="APPROVE", body="Auto-approved by workflow")
                   print(f"Approved PR #{pr.number}")
-              except Exception as e:
+              except GithubException as e:
                   print(f"Approval failed: {str(e)}")
+                  continue
 
               # Merge PR
               try:
-                  pr.merge(merge_method="squash")
-                  print(f"Merged PR #{pr.number}")
-                  
-                  # Update points
-                  username = pr.user.login
-                  points = 3
-                  
-                  points_data["users"][username] = points_data["users"].get(username, 0) + points
-                  points_data["history"].append({
-                      "username": username,
-                      "points": points,
-                      "pr_number": pr.number,
-                      "date": datetime.now().isoformat(),
-                      "reason": "PR merged"
-                  })
-                  print(f"Added {points} points to @{username}")
-                  
-              except Exception as e:
+                  merge_result = pr.merge(merge_method="squash")
+                  if merge_result.merged:
+                      print(f"Successfully merged PR #{pr.number}")
+                      
+                      # Update points
+                      username = pr.user.login
+                      points = 3
+                      
+                      points_data["users"][username] = points_data["users"].get(username, 0) + points
+                      points_data["history"].append({
+                          "username": username,
+                          "points": points,
+                          "pr_number": pr.number,
+                          "date": datetime.now().isoformat(),
+                          "reason": "PR merged"
+                      })
+                      print(f"Added {points} points to @{username}")
+                  else:
+                      print(f"Merge not completed for PR #{pr.number}")
+              except GithubException as e:
                   print(f"Merge failed: {str(e)}")
+                  continue
 
           # Update points.json
-          repo.update_file(
-              path="points.json",
-              message="Update points after PR merges",
-              content=json.dumps(points_data, indent=2),
-              sha=contents.sha if 'contents' in locals() else None
-          )
+          try:
+              if file_sha:
+                  repo.update_file(
+                      path="points.json",
+                      message="Update points after PR merges",
+                      content=json.dumps(points_data, indent=2),
+                      sha=file_sha
+                  )
+              else:
+                  repo.create_file(
+                      path="points.json",
+                      message="Initialize points tracking",
+                      content=json.dumps(points_data, indent=2)
+                  )
+              print("Successfully updated points.json")
+          except Exception as e:
+              print(f"Failed to update points.json: {str(e)}")
           EOF
