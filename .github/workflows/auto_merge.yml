@@ -1,4 +1,4 @@
-name: Auto Approve and Merge PRs
+name: Auto Approve and Merge PRs with Points
 
 on:
   schedule:
@@ -12,11 +12,13 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Needed to push changes back to repo
 
       - name: Install Python dependencies
         run: pip install requests
 
-      - name: Approve and Merge PRs using Python
+      - name: Approve, Merge PRs and Assign Points
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
@@ -24,6 +26,8 @@ jobs:
           python3 <<EOF
           import os
           import requests
+          import json
+          from datetime import datetime
 
           token = os.environ['GITHUB_TOKEN']
           repo = os.environ['REPO']
@@ -32,21 +36,30 @@ jobs:
               'Accept': 'application/vnd.github.v3+json'
           }
 
+          # Load or initialize points data
+          try:
+              with open('points.json', 'r') as f:
+                  points_data = json.load(f)
+          except FileNotFoundError:
+              points_data = {"users": {}, "history": []}
+
           # List open pull requests
           pr_url = f'https://api.github.com/repos/{repo}/pulls'
           prs = requests.get(pr_url, headers=headers).json()
 
           for pr in prs:
               pr_number = pr['number']
-              print(f'Processing PR #{pr_number}')
+              username = pr['user']['login']
+              print(f'Processing PR #{pr_number} by @{username}')
 
               # Approve the PR
               approve_url = f'https://api.github.com/repos/{repo}/pulls/{pr_number}/reviews'
               approve_payload = {
-                  "event": "APPROVE"
+                  "event": "APPROVE",
+                  "body": "Automatically approved by workflow"
               }
               approve_resp = requests.post(approve_url, headers=headers, json=approve_payload)
-              print(f"Approval status: {approve_resp.status_code} {approve_resp.text}")
+              print(f"Approval status: {approve_resp.status_code}")
 
               # Merge the PR
               merge_url = f'https://api.github.com/repos/{repo}/pulls/{pr_number}/merge'
@@ -54,5 +67,35 @@ jobs:
                   "merge_method": "squash"
               }
               merge_resp = requests.put(merge_url, headers=headers, json=merge_payload)
-              print(f"Merge status: {merge_resp.status_code} {merge_resp.text}")
+              print(f"Merge status: {merge_resp.status_code}")
+
+              if merge_resp.status_code == 200:
+                  # Add points to user
+                  points = 3
+                  if username in points_data["users"]:
+                      points_data["users"][username] += points
+                  else:
+                      points_data["users"][username] = points
+
+                  # Record history
+                  points_data["history"].append({
+                      "username": username,
+                      "points": points,
+                      "pr_number": pr_number,
+                      "date": datetime.now().isoformat(),
+                      "reason": "PR merged"
+                  })
+
+                  print(f"Assigned {points} points to @{username}")
+
+          # Save points data
+          with open('points.json', 'w') as f:
+              json.dump(points_data, f, indent=2)
+
+          # Commit and push the points.json file
+          os.system('git config --global user.email "actions@github.com"')
+          os.system('git config --global user.name "GitHub Actions"')
+          os.system('git add points.json')
+          os.system('git commit -m "Update points after PR merges"')
+          os.system('git push')
           EOF
