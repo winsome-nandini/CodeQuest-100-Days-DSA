@@ -2,18 +2,22 @@ name: Auto Approve and Merge PRs with Points
 
 on:
   schedule:
-    - cron: '29 18 * * *'  # 11:59 PM IST (convert to UTC)
-  workflow_dispatch:       # Allow manual trigger
+    - cron: '29 18 * * *'  # 11:59 PM IST
+  workflow_dispatch:
 
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Needed to push changes back to repo
+          fetch-depth: 0
+          ref: main  # Explicitly specify your default branch
 
       - name: Install Python dependencies
         run: pip install requests
@@ -23,6 +27,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
+          # Initialize points.json if missing
+          if [ ! -f "points.json" ]; then
+            echo '{"users":{},"history":[]}' > points.json
+            git add points.json
+            git commit -m "Initialize points tracking"
+            git push origin main
+          fi
+
           python3 <<EOF
           import os
           import requests
@@ -36,12 +48,9 @@ jobs:
               'Accept': 'application/vnd.github.v3+json'
           }
 
-          # Load or initialize points data
-          try:
-              with open('points.json', 'r') as f:
-                  points_data = json.load(f)
-          except FileNotFoundError:
-              points_data = {"users": {}, "history": []}
+          # Load points data
+          with open('points.json', 'r') as f:
+              points_data = json.load(f)
 
           # List open pull requests
           pr_url = f'https://api.github.com/repos/{repo}/pulls'
@@ -72,10 +81,7 @@ jobs:
               if merge_resp.status_code == 200:
                   # Add points to user
                   points = 3
-                  if username in points_data["users"]:
-                      points_data["users"][username] += points
-                  else:
-                      points_data["users"][username] = points
+                  points_data["users"][username] = points_data["users"].get(username, 0) + points
 
                   # Record history
                   points_data["history"].append({
@@ -91,11 +97,21 @@ jobs:
           # Save points data
           with open('points.json', 'w') as f:
               json.dump(points_data, f, indent=2)
-
-          # Commit and push the points.json file
-          os.system('git config --global user.email "actions@github.com"')
-          os.system('git config --global user.name "GitHub Actions"')
-          os.system('git add points.json')
-          os.system('git commit -m "Update points after PR merges"')
-          os.system('git push')
           EOF
+
+          # Configure git
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          
+          # Commit and push changes
+          git pull --rebase origin main
+          git add points.json
+          git commit -m "Update points after PR merges" || echo "No changes to commit"
+          git push origin main
+
+      - name: Verify points file
+        run: |
+          echo "Current points.json content:"
+          cat points.json
+          echo -e "\n\nPublic URL:"
+          echo "https://raw.githubusercontent.com/${{ github.repository }}/main/points.json"
