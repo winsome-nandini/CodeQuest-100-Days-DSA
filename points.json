@@ -7,7 +7,7 @@
     "Madhumita-127": 6,
     "winsome-nandini": 15,
     "Abhishek05eccs": 6,
-    "Ayush-vishwakarma-git": 15,
+    "Ayush-vishwakarma-git": 18,
     "digambarsingh14": 9,
     "palakrawat30": 12,
     "Harshit-Ram": 15,
@@ -624,6 +624,13 @@
       "date": "2025-04-01T12:56:00+00:00",
       "pr_number": 9,
       "reason": "April 1-5 Event: 3 points for PR #9"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "pr_number": 85,
+      "date": "2025-04-05T18:40:40.732670",
+      "reason": "PR merged"
     }
   ]
 }
