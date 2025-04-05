@@ -1,4 +1,4 @@
-name: Daily PR Auto-Merge with Unlimited Points
+name: Daily PR Auto-Merge with Points
 
 on:
   schedule:
@@ -12,6 +12,7 @@ jobs:
       contents: write
       pull-requests: write
       checks: write
+      statuses: write
 
     steps:
       - name: Checkout repository
@@ -40,7 +41,7 @@ jobs:
           from github.GithubException import GithubException
 
           # Configuration
-          POINTS_PER_PR = 3  # 3 points per PR (no maximum limit)
+          POINTS_PER_PR = 3
 
           # Initialize
           g = Github(os.environ['GITHUB_TOKEN'])
@@ -59,14 +60,14 @@ jobs:
           for pr in repo.get_pulls(state='open'):
               print(f"\nProcessing PR #{pr.number} by @{pr.user.login}")
               
-              # Skip if PR has merge conflicts
-              if pr.mergeable_state == "dirty":
-                  print(f"Skipping PR #{pr.number} due to merge conflicts")
-                  continue
-                  
               try:
+                  # Check mergeability first
+                  if not pr.mergeable:
+                      print(f"PR #{pr.number} not mergeable (mergeable_state: {pr.mergeable_state})")
+                      continue
+                      
                   # Approve PR
-                  pr.create_review(event="APPROVE", body="Auto-approved by daily merge workflow")
+                  pr.create_review(event="APPROVE", body="Auto-approved by workflow")
                   
                   # Merge PR
                   merge_result = pr.merge(merge_method="squash")
@@ -74,16 +75,17 @@ jobs:
                   if merge_result.merged:
                       # Update points
                       username = pr.user.login
-                      points_data["users"][username] = points_data["users"].get(username, 0) + POINTS_PER_PR
+                      current_points = points_data["users"].get(username, 0)
+                      points_data["users"][username] = current_points + POINTS_PER_PR
                       
                       points_data["history"].append({
                           "username": username,
                           "points": POINTS_PER_PR,
                           "pr_number": pr.number,
                           "date": datetime.now().isoformat(),
-                          "reason": "Daily auto-merge: 3 points"
+                          "reason": "PR merged"
                       })
-                      print(f"Merged PR #{pr.number} and added {POINTS_PER_PR} points to @{username}")
+                      print(f"Successfully merged PR #{pr.number} and added {POINTS_PER_PR} points to @{username}")
                       
               except GithubException as e:
                   print(f"Failed to process PR #{pr.number}: {str(e)}")
@@ -91,18 +93,19 @@ jobs:
 
           # Save updated points
           try:
+              updated_content = json.dumps(points_data, indent=2)
               if file_sha:
                   repo.update_file(
                       path="points.json",
                       message=f"Update points: {len(points_data['history'])} PRs processed",
-                      content=json.dumps(points_data, indent=2),
+                      content=updated_content,
                       sha=file_sha
                   )
               else:
                   repo.create_file(
                       path="points.json",
                       message="Initialize points tracking",
-                      content=json.dumps(points_data, indent=2)
+                      content=updated_content
                   )
               print("Successfully updated points.json")
           except Exception as e:
