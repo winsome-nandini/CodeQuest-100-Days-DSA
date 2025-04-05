@@ -1,4 +1,4 @@
-name: Auto Approve and Merge PRs with Points
+name: Daily PR Auto-Merge with Unlimited Points
 
 on:
   schedule:
@@ -26,8 +26,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: |
-          pip install PyGithub
+        run: pip install PyGithub
 
       - name: Process PRs and update points
         env:
@@ -40,23 +39,23 @@ jobs:
           from github import Github
           from github.GithubException import GithubException
 
+          # Configuration
+          POINTS_PER_PR = 3  # 3 points per PR (no maximum limit)
+
           # Initialize
-          token = os.environ['GITHUB_TOKEN']
-          g = Github(token)
-          repo_name = os.environ['GITHUB_REPOSITORY']
-          repo = g.get_repo(repo_name)
+          g = Github(os.environ['GITHUB_TOKEN'])
+          repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
 
           # Load or create points.json
           try:
               contents = repo.get_contents("points.json")
               points_data = json.loads(contents.decoded_content.decode())
               file_sha = contents.sha
-          except Exception as e:
-              print(f"Creating new points.json: {str(e)}")
+          except:
               points_data = {"users": {}, "history": []}
               file_sha = None
 
-          # Process PRs
+          # Process all open PRs
           for pr in repo.get_pulls(state='open'):
               print(f"\nProcessing PR #{pr.number} by @{pr.user.login}")
               
@@ -65,45 +64,37 @@ jobs:
                   print(f"Skipping PR #{pr.number} due to merge conflicts")
                   continue
                   
-              # Approve PR
               try:
-                  pr.create_review(event="APPROVE", body="Auto-approved by workflow")
-                  print(f"Approved PR #{pr.number}")
-              except GithubException as e:
-                  print(f"Approval failed: {str(e)}")
-                  continue
-
-              # Merge PR
-              try:
+                  # Approve PR
+                  pr.create_review(event="APPROVE", body="Auto-approved by daily merge workflow")
+                  
+                  # Merge PR
                   merge_result = pr.merge(merge_method="squash")
+                  
                   if merge_result.merged:
-                      print(f"Successfully merged PR #{pr.number}")
-                      
                       # Update points
                       username = pr.user.login
-                      points = 3
+                      points_data["users"][username] = points_data["users"].get(username, 0) + POINTS_PER_PR
                       
-                      points_data["users"][username] = points_data["users"].get(username, 0) + points
                       points_data["history"].append({
                           "username": username,
-                          "points": points,
+                          "points": POINTS_PER_PR,
                           "pr_number": pr.number,
                           "date": datetime.now().isoformat(),
-                          "reason": "PR merged"
+                          "reason": "Daily auto-merge: 3 points"
                       })
-                      print(f"Added {points} points to @{username}")
-                  else:
-                      print(f"Merge not completed for PR #{pr.number}")
+                      print(f"Merged PR #{pr.number} and added {POINTS_PER_PR} points to @{username}")
+                      
               except GithubException as e:
-                  print(f"Merge failed: {str(e)}")
+                  print(f"Failed to process PR #{pr.number}: {str(e)}")
                   continue
 
-          # Update points.json
+          # Save updated points
           try:
               if file_sha:
                   repo.update_file(
                       path="points.json",
-                      message="Update points after PR merges",
+                      message=f"Update points: {len(points_data['history'])} PRs processed",
                       content=json.dumps(points_data, indent=2),
                       sha=file_sha
                   )
