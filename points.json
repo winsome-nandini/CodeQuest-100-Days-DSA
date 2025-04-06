@@ -1,8 +1,85 @@
 {
   "users": {
     "22MH1A04H3": {
+      "points": 12,
+      "social_media": "",
+      "social_media_points": 0
+    },
+    "Utkarsh-0003": {
+      "points": 9,
+      "social_media_points": 0
+    },
+    "winsome-nandini": {
+      "points": 9,
+      "social_media_points": 0
+    },
+    "Ayush-vishwakarma-git": {
+      "points": 12,
+      "social_media_points": 0
+    },
+    "Devilwelcometohell": {
+      "points": 15,
+      "social_media_points": 0
+    },
+    "palakrawat30": {
+      "points": 12,
+      "social_media_points": 0
+    },
+    "shagun111484": {
+      "points": 12,
+      "social_media_points": 0
+    },
+    "ABUZAR-2003": {
+      "points": 12,
+      "social_media_points": 0
+    },
+    "Avantikaay": {
+      "points": 12,
+      "social_media_points": 0
+    },
+    "Madhumita-127": {
+      "points": 6,
+      "social_media_points": 0
+    },
+    "Abhishek05eccs": {
+      "points": 6,
+      "social_media_points": 0
+    },
+    "digambarsingh14": {
+      "points": 9,
+      "social_media_points": 0
+    },
+    "Harshit-Ram": {
+      "points": 9,
+      "social_media_points": 0
+    },
+    "Tusharsharma1827": {
+      "points": 12,
+      "social_media_points": 0
+    },
+    "Aditya-KumarEC": {
       "points": 3,
-      "social_media": ""
+      "social_media_points": 0
+    },
+    "User8085": {
+      "points": 3,
+      "social_media_points": 0
+    },
+    "bhumikadixit05": {
+      "points": 3,
+      "social_media_points": 0
+    },
+    "Samriddhiii89": {
+      "points": 3,
+      "social_media_points": 0
+    },
+    "ayushman2710": {
+      "points": 3,
+      "social_media_points": 0
+    },
+    "Abhishek-Sharma182005": {
+      "points": 3,
+      "social_media_points": 0
     }
   },
   "history": [
@@ -12,6 +89,580 @@
       "pr_number": 91,
       "date": "2025-04-06T11:53:21.640388+00:00",
       "reason": "Daily PR Challenge: PR #91"
+    },
+    {
+      "username": "Utkarsh-0003",
+      "points": 3,
+      "pr_number": 90,
+      "date": "2025-04-06T12:00:30.867202+00:00",
+      "reason": "Daily PR Challenge: PR #90"
+    },
+    {
+      "username": "Utkarsh-0003",
+      "points": 3,
+      "pr_number": 89,
+      "date": "2025-04-06T12:00:31.443490+00:00",
+      "reason": "Daily PR Challenge: PR #89"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "pr_number": 86,
+      "date": "2025-04-06T12:00:33.163610+00:00",
+      "reason": "Daily PR Challenge: PR #86"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "pr_number": 85,
+      "date": "2025-04-06T12:00:33.758995+00:00",
+      "reason": "Daily PR Challenge: PR #85"
+    },
+    {
+      "username": "Devilwelcometohell",
+      "points": 3,
+      "pr_number": 84,
+      "date": "2025-04-06T12:00:34.237153+00:00",
+      "reason": "Daily PR Challenge: PR #84"
+    },
+    {
+      "username": "palakrawat30",
+      "points": 3,
+      "pr_number": 83,
+      "date": "2025-04-06T12:00:34.746961+00:00",
+      "reason": "Daily PR Challenge: PR #83"
+    },
+    {
+      "username": "shagun111484",
+      "points": 3,
+      "pr_number": 82,
+      "date": "2025-04-06T12:00:35.237034+00:00",
+      "reason": "Daily PR Challenge: PR #82"
+    },
+    {
+      "username": "ABUZAR-2003",
+      "points": 3,
+      "pr_number": 80,
+      "date": "2025-04-06T12:00:36.358548+00:00",
+      "reason": "Daily PR Challenge: PR #80"
+    },
+    {
+      "username": "22MH1A04H3",
+      "points": 3,
+      "pr_number": 79,
+      "date": "2025-04-06T12:00:36.902466+00:00",
+      "reason": "Daily PR Challenge: PR #79"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "pr_number": 78,
+      "date": "2025-04-06T12:00:37.467382+00:00",
+      "reason": "Daily PR Challenge: PR #78"
+    },
+    {
+      "username": "Utkarsh-0003",
+      "points": 3,
+      "pr_number": 77,
+      "date": "2025-04-06T12:00:38.012870+00:00",
+      "reason": "Daily PR Challenge: PR #77"
+    },
+    {
+      "username": "Madhumita-127",
+      "points": 3,
+      "pr_number": 76,
+      "date": "2025-04-06T12:00:38.522843+00:00",
+      "reason": "Daily PR Challenge: PR #76"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "pr_number": 75,
+      "date": "2025-04-06T12:00:39.028294+00:00",
+      "reason": "Daily PR Challenge: PR #75"
+    },
+    {
+      "username": "Abhishek05eccs",
+      "points": 3,
+      "pr_number": 74,
+      "date": "2025-04-06T12:00:39.542528+00:00",
+      "reason": "Daily PR Challenge: PR #74"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "pr_number": 73,
+      "date": "2025-04-06T12:00:40.064412+00:00",
+      "reason": "Daily PR Challenge: PR #73"
+    },
+    {
+      "username": "digambarsingh14",
+      "points": 3,
+      "pr_number": 72,
+      "date": "2025-04-06T12:00:40.585138+00:00",
+      "reason": "Daily PR Challenge: PR #72"
+    },
+    {
+      "username": "Madhumita-127",
+      "points": 3,
+      "pr_number": 71,
+      "date": "2025-04-06T12:00:41.079359+00:00",
+      "reason": "Daily PR Challenge: PR #71"
+    },
+    {
+      "username": "palakrawat30",
+      "points": 3,
+      "pr_number": 70,
+      "date": "2025-04-06T12:00:41.627159+00:00",
+      "reason": "Daily PR Challenge: PR #70"
+    },
+    {
+      "username": "Harshit-Ram",
+      "points": 3,
+      "pr_number": 69,
+      "date": "2025-04-06T12:00:42.142150+00:00",
+      "reason": "Daily PR Challenge: PR #69"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "pr_number": 68,
+      "date": "2025-04-06T12:00:42.673217+00:00",
+      "reason": "Daily PR Challenge: PR #68"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "pr_number": 67,
+      "date": "2025-04-06T12:00:43.187429+00:00",
+      "reason": "Daily PR Challenge: PR #67"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "pr_number": 66,
+      "date": "2025-04-06T12:00:43.720647+00:00",
+      "reason": "Daily PR Challenge: PR #66"
+    },
+    {
+      "username": "Tusharsharma1827",
+      "points": 3,
+      "pr_number": 65,
+      "date": "2025-04-06T12:00:44.225547+00:00",
+      "reason": "Daily PR Challenge: PR #65"
+    },
+    {
+      "username": "Devilwelcometohell",
+      "points": 3,
+      "pr_number": 64,
+      "date": "2025-04-06T12:00:44.715145+00:00",
+      "reason": "Daily PR Challenge: PR #64"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "pr_number": 63,
+      "date": "2025-04-06T12:00:45.243082+00:00",
+      "reason": "Daily PR Challenge: PR #63"
+    },
+    {
+      "username": "shagun111484",
+      "points": 3,
+      "pr_number": 62,
+      "date": "2025-04-06T12:00:45.830998+00:00",
+      "reason": "Daily PR Challenge: PR #62"
+    },
+    {
+      "username": "ABUZAR-2003",
+      "points": 3,
+      "pr_number": 61,
+      "date": "2025-04-06T12:00:47.034054+00:00",
+      "reason": "Daily PR Challenge: PR #61"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "pr_number": 60,
+      "date": "2025-04-06T12:00:47.576659+00:00",
+      "reason": "Daily PR Challenge: PR #60"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "pr_number": 59,
+      "date": "2025-04-06T12:00:48.070271+00:00",
+      "reason": "Daily PR Challenge: PR #59"
+    },
+    {
+      "username": "Aditya-KumarEC",
+      "points": 3,
+      "pr_number": 58,
+      "date": "2025-04-06T12:00:48.608193+00:00",
+      "reason": "Daily PR Challenge: PR #58"
+    },
+    {
+      "username": "digambarsingh14",
+      "points": 3,
+      "pr_number": 57,
+      "date": "2025-04-06T12:00:49.142547+00:00",
+      "reason": "Daily PR Challenge: PR #57"
+    },
+    {
+      "username": "shagun111484",
+      "points": 3,
+      "pr_number": 56,
+      "date": "2025-04-06T12:00:49.694852+00:00",
+      "reason": "Daily PR Challenge: PR #56"
+    },
+    {
+      "username": "Devilwelcometohell",
+      "points": 3,
+      "pr_number": 55,
+      "date": "2025-04-06T12:00:50.220125+00:00",
+      "reason": "Daily PR Challenge: PR #55"
+    },
+    {
+      "username": "User8085",
+      "points": 3,
+      "pr_number": 54,
+      "date": "2025-04-06T12:00:50.703734+00:00",
+      "reason": "Daily PR Challenge: PR #54"
+    },
+    {
+      "username": "Tusharsharma1827",
+      "points": 3,
+      "pr_number": 53,
+      "date": "2025-04-06T12:00:51.198188+00:00",
+      "reason": "Daily PR Challenge: PR #53"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "pr_number": 52,
+      "date": "2025-04-06T12:00:51.687660+00:00",
+      "reason": "Daily PR Challenge: PR #52"
+    },
+    {
+      "username": "ABUZAR-2003",
+      "points": 3,
+      "pr_number": 51,
+      "date": "2025-04-06T12:00:52.236563+00:00",
+      "reason": "Daily PR Challenge: PR #51"
+    },
+    {
+      "username": "Abhishek05eccs",
+      "points": 3,
+      "pr_number": 50,
+      "date": "2025-04-06T12:00:52.789792+00:00",
+      "reason": "Daily PR Challenge: PR #50"
+    },
+    {
+      "username": "22MH1A04H3",
+      "points": 3,
+      "pr_number": 49,
+      "date": "2025-04-06T12:00:53.336132+00:00",
+      "reason": "Daily PR Challenge: PR #49"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "pr_number": 48,
+      "date": "2025-04-06T12:00:53.908352+00:00",
+      "reason": "Daily PR Challenge: PR #48"
+    },
+    {
+      "username": "palakrawat30",
+      "points": 3,
+      "pr_number": 47,
+      "date": "2025-04-06T12:00:54.454608+00:00",
+      "reason": "Daily PR Challenge: PR #47"
+    },
+    {
+      "username": "Harshit-Ram",
+      "points": 3,
+      "pr_number": 46,
+      "date": "2025-04-06T12:00:54.951048+00:00",
+      "reason": "Daily PR Challenge: PR #46"
+    },
+    {
+      "username": "Utkarsh-0003",
+      "points": 3,
+      "pr_number": 45,
+      "date": "2025-04-06T12:00:55.468168+00:00",
+      "reason": "Daily PR Challenge: PR #45"
+    },
+    {
+      "username": "Tusharsharma1827",
+      "points": 3,
+      "pr_number": 44,
+      "date": "2025-04-06T12:00:56.011538+00:00",
+      "reason": "Daily PR Challenge: PR #44"
+    },
+    {
+      "username": "palakrawat30",
+      "points": 3,
+      "pr_number": 43,
+      "date": "2025-04-06T12:00:56.538350+00:00",
+      "reason": "Daily PR Challenge: PR #43"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "pr_number": 42,
+      "date": "2025-04-06T12:00:57.056146+00:00",
+      "reason": "Daily PR Challenge: PR #42"
+    },
+    {
+      "username": "Harshit-Ram",
+      "points": 3,
+      "pr_number": 41,
+      "date": "2025-04-06T12:00:57.566546+00:00",
+      "reason": "Daily PR Challenge: PR #41"
+    },
+    {
+      "username": "digambarsingh14",
+      "points": 3,
+      "pr_number": 40,
+      "date": "2025-04-06T12:00:58.077753+00:00",
+      "reason": "Daily PR Challenge: PR #40"
+    },
+    {
+      "username": "shagun111484",
+      "points": 3,
+      "pr_number": 39,
+      "date": "2025-04-06T12:00:58.602327+00:00",
+      "reason": "Daily PR Challenge: PR #39"
+    },
+    {
+      "username": "shagun111484",
+      "points": 3,
+      "pr_number": 38,
+      "date": "2025-04-06T12:00:59.133638+00:00",
+      "reason": "Daily PR Challenge: PR #38"
+    },
+    {
+      "username": "Devilwelcometohell",
+      "points": 3,
+      "pr_number": 37,
+      "date": "2025-04-06T12:00:59.637301+00:00",
+      "reason": "Daily PR Challenge: PR #37"
+    },
+    {
+      "username": "ABUZAR-2003",
+      "points": 3,
+      "pr_number": 36,
+      "date": "2025-04-06T12:01:00.159366+00:00",
+      "reason": "Daily PR Challenge: PR #36"
+    },
+    {
+      "username": "22MH1A04H3",
+      "points": 3,
+      "pr_number": 35,
+      "date": "2025-04-06T12:01:00.685263+00:00",
+      "reason": "Daily PR Challenge: PR #35"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "pr_number": 34,
+      "date": "2025-04-06T12:01:01.219921+00:00",
+      "reason": "Daily PR Challenge: PR #34"
+    },
+    {
+      "username": "Utkarsh-0003",
+      "points": 3,
+      "pr_number": 33,
+      "date": "2025-04-06T12:01:01.756980+00:00",
+      "reason": "Daily PR Challenge: PR #33"
+    },
+    {
+      "username": "winsome-nandini",
+      "points": 3,
+      "pr_number": 32,
+      "date": "2025-04-06T12:01:02.290620+00:00",
+      "reason": "Daily PR Challenge: PR #32"
+    },
+    {
+      "username": "bhumikadixit05",
+      "points": 3,
+      "pr_number": 31,
+      "date": "2025-04-06T12:01:03.495421+00:00",
+      "reason": "Daily PR Challenge: PR #31"
+    },
+    {
+      "username": "bhumikadixit05",
+      "points": 3,
+      "pr_number": 30,
+      "date": "2025-04-06T12:01:04.053553+00:00",
+      "reason": "Daily PR Challenge: PR #30"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "pr_number": 29,
+      "date": "2025-04-06T12:01:04.599255+00:00",
+      "reason": "Daily PR Challenge: PR #29"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "pr_number": 28,
+      "date": "2025-04-06T12:01:05.140052+00:00",
+      "reason": "Daily PR Challenge: PR #28"
+    },
+    {
+      "username": "Samriddhiii89",
+      "points": 3,
+      "pr_number": 27,
+      "date": "2025-04-06T12:01:05.689035+00:00",
+      "reason": "Daily PR Challenge: PR #27"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "pr_number": 26,
+      "date": "2025-04-06T12:01:06.187417+00:00",
+      "reason": "Daily PR Challenge: PR #26"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "pr_number": 25,
+      "date": "2025-04-06T12:01:06.706847+00:00",
+      "reason": "Daily PR Challenge: PR #25"
+    },
+    {
+      "username": "Tusharsharma1827",
+      "points": 3,
+      "pr_number": 24,
+      "date": "2025-04-06T12:01:07.237233+00:00",
+      "reason": "Daily PR Challenge: PR #24"
+    },
+    {
+      "username": "ayushman2710",
+      "points": 3,
+      "pr_number": 23,
+      "date": "2025-04-06T12:01:07.760787+00:00",
+      "reason": "Daily PR Challenge: PR #23"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "pr_number": 22,
+      "date": "2025-04-06T12:01:08.256088+00:00",
+      "reason": "Daily PR Challenge: PR #22"
+    },
+    {
+      "username": "22MH1A04H3",
+      "points": 3,
+      "pr_number": 21,
+      "date": "2025-04-06T12:01:08.786573+00:00",
+      "reason": "Daily PR Challenge: PR #21"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "pr_number": 20,
+      "date": "2025-04-06T12:01:09.311076+00:00",
+      "reason": "Daily PR Challenge: PR #20"
+    },
+    {
+      "username": "Devilwelcometohell",
+      "points": 3,
+      "pr_number": 19,
+      "date": "2025-04-06T12:01:09.838409+00:00",
+      "reason": "Daily PR Challenge: PR #19"
+    },
+    {
+      "username": "palakrawat30",
+      "points": 3,
+      "pr_number": 18,
+      "date": "2025-04-06T12:01:10.359172+00:00",
+      "reason": "Daily PR Challenge: PR #18"
+    },
+    {
+      "username": "Ayush-vishwakarma-git",
+      "points": 3,
+      "pr_number": 17,
+      "date": "2025-04-06T12:01:10.880388+00:00",
+      "reason": "Daily PR Challenge: PR #17"
+    },
+    {
+      "username": "ABUZAR-2003",
+      "points": 3,
+      "pr_number": 16,
+      "date": "2025-04-06T12:01:11.396715+00:00",
+      "reason": "Daily PR Challenge: PR #16"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "pr_number": 15,
+      "date": "2025-04-06T12:01:11.898477+00:00",
+      "reason": "Daily PR Challenge: PR #15"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "pr_number": 14,
+      "date": "2025-04-06T12:01:12.417550+00:00",
+      "reason": "Daily PR Challenge: PR #14"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "pr_number": 13,
+      "date": "2025-04-06T12:01:12.931500+00:00",
+      "reason": "Daily PR Challenge: PR #13"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "pr_number": 12,
+      "date": "2025-04-06T12:01:13.428536+00:00",
+      "reason": "Daily PR Challenge: PR #12"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "pr_number": 11,
+      "date": "2025-04-06T12:01:13.960236+00:00",
+      "reason": "Daily PR Challenge: PR #11"
+    },
+    {
+      "username": "Harshit-Ram",
+      "points": 3,
+      "pr_number": 10,
+      "date": "2025-04-06T12:01:14.488324+00:00",
+      "reason": "Daily PR Challenge: PR #10"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "pr_number": 8,
+      "date": "2025-04-06T12:01:15.481796+00:00",
+      "reason": "Daily PR Challenge: PR #8"
+    },
+    {
+      "username": "Avantikaay",
+      "points": 3,
+      "pr_number": 7,
+      "date": "2025-04-06T12:01:15.975277+00:00",
+      "reason": "Daily PR Challenge: PR #7"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "pr_number": 6,
+      "date": "2025-04-06T12:01:16.520653+00:00",
+      "reason": "Daily PR Challenge: PR #6"
+    },
+    {
+      "username": "Abhishek-Sharma182005",
+      "points": 3,
+      "pr_number": 5,
+      "date": "2025-04-06T12:01:17.018892+00:00",
+      "reason": "Daily PR Challenge: PR #5"
     }
   ],
   "metadata": {
@@ -20,9 +671,9 @@
     "max_points_per_day": 3,
     "event_start_date": "2025-04-01",
     "last_updated": "",
-    "total_participants": 0,
-    "total_points_distributed": 0
+    "total_participants": 20,
+    "total_points_distributed": 165
   },
-  "total_points": 3,
-  "last_updated": "2025-04-06T11:58:21.188594+00:00"
+  "total_points": 165,
+  "last_updated": "2025-04-06T12:01:19.575680+00:00"
 }
