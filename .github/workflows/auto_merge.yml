@@ -50,13 +50,12 @@ jobs:
           RETRY_DELAY = 5  # seconds
           EVENT_START_DATE = datetime(2025, 4, 1).date()  # April 1, 2025
 
-          # Initialize
+          # Initialize GitHub connection
           g = Github(os.environ['GITHUB_TOKEN'])
           repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
           today = datetime.now(timezone.utc).date()
 
-          # Load or create points.json
-          file_sha = None
+          # Initialize points data structure
           points_data = {
               "users": {},
               "history": [],
@@ -70,12 +69,14 @@ jobs:
                   "total_points_distributed": 0
               }
           }
+          file_sha = None
 
+          # Try to load existing points.json
           try:
               contents = repo.get_contents("points.json")
               points_data = json.loads(contents.decoded_content.decode())
               file_sha = contents.sha
-              # Ensure social_media field exists for all users
+              # Ensure all users have social_media field
               for username in points_data["users"]:
                   if "social_media" not in points_data["users"][username]:
                       points_data["users"][username]["social_media"] = ""
@@ -103,6 +104,8 @@ jobs:
                       if pr.mergeable_state == "clean":
                           return True
                       print(f"Attempt {attempt + 1}: PR #{pr.number} state: {pr.mergeable_state}")
+                      if pr.mergeable_state == "dirty":
+                          return False
                       time.sleep(RETRY_DELAY)
                   except Exception as e:
                       print(f"Error checking mergeability: {str(e)}")
@@ -116,10 +119,20 @@ jobs:
               print(f"\nProcessing PR #{pr.number} by @{username}")
               
               try:
-                  # Check if user already earned points today
+                  # Skip PRs created before event start date
                   pr_created_date = pr.created_at.date()
                   if pr_created_date < EVENT_START_DATE:
                       print(f"PR #{pr.number} created before event start date, skipping")
+                      continue
+                      
+                  # Skip if user already earned points today
+                  today_points = sum(
+                      entry["points"] for entry in points_data["history"]
+                      if entry["username"] == username
+                      and datetime.fromisoformat(entry["date"]).date() == today
+                  )
+                  if today_points >= MAX_POINTS_PER_DAY:
+                      print(f"@{username} already has max points today ({today_points}/{MAX_POINTS_PER_DAY})")
                       continue
                       
                   # Check mergeability
@@ -127,15 +140,16 @@ jobs:
                       print(f"PR #{pr.number} cannot be merged (state: {pr.mergeable_state})")
                       continue
                       
-                  # Approve PR
+                  # Try to merge
                   try:
-                      pr.create_review(event="APPROVE", body="Auto-approved by workflow")
-                  except Exception as e:
-                      print(f"Couldn't approve PR #{pr.number}: {str(e)}")
-                      continue
-                      
-                  # Merge PR
-                  try:
+                      # First approve the PR
+                      try:
+                          pr.create_review(event="APPROVE", body="Auto-approved by workflow")
+                      except Exception as e:
+                          print(f"Approval failed for PR #{pr.number}: {str(e)}")
+                          continue
+                          
+                      # Then merge the PR
                       merge_result = pr.merge(merge_method="squash")
                       if not merge_result.merged:
                           print(f"Merge failed for PR #{pr.number}")
@@ -148,7 +162,6 @@ jobs:
                               "social_media": ""
                           }
                       
-                      # Calculate points based on PRs from April 1st
                       new_points = get_user_points_from_history(username) + POINTS_PER_PR
                       points_data["users"][username]["points"] = new_points
                       
@@ -162,8 +175,11 @@ jobs:
                       processed_prs += 1
                       print(f"Successfully merged PR #{pr.number}. Total points for @{username}: {new_points}")
                       
-                  except Exception as e:
-                      print(f"Merge failed for PR #{pr.number}: {str(e)}")
+                  except GithubException as e:
+                      if "Resource not accessible by integration" in str(e):
+                          print(f"Permission error merging PR #{pr.number}. Please check workflow permissions.")
+                      else:
+                          print(f"Merge failed for PR #{pr.number}: {str(e)}")
                       continue
                       
               except Exception as e:
@@ -190,11 +206,29 @@ jobs:
                       sha=file_sha
                   )
               else:
-                  repo.create_file(
-                      path="points.json",
-                      message="Initialize points tracking",
-                      content=updated_content
-                  )
+                  try:
+                      repo.create_file(
+                          path="points.json",
+                          message="Initialize points tracking",
+                          content=updated_content
+                      )
+                  except GithubException as e:
+                      if "sha" in str(e):
+                          # Try to get the SHA and retry
+                          try:
+                              contents = repo.get_contents("points.json")
+                              file_sha = contents.sha
+                              repo.update_file(
+                                  path="points.json",
+                                  message=commit_message,
+                                  content=updated_content,
+                                  sha=file_sha
+                              )
+                          except Exception as e2:
+                              print(f"Failed to update points.json after SHA retrieval: {str(e2)}")
+                              raise e2
+                      else:
+                          raise e
               print("Successfully updated points.json")
           except Exception as e:
               print(f"Failed to update points.json: {str(e)}")
