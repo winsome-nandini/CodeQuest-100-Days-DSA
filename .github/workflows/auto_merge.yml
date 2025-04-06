@@ -36,32 +36,66 @@ jobs:
           python3 <<'EOF'
           import os
           import json
-          from datetime import datetime
+          from datetime import datetime, timezone
           from github import Github
           from github.GithubException import GithubException
 
           # Configuration
           POINTS_PER_PR = 3
+          MAX_POINTS_PER_DAY = 3  # Maximum points a user can earn per day
+          EVENT_NAME = "Daily PR Challenge"
 
           # Initialize
           g = Github(os.environ['GITHUB_TOKEN'])
           repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
+          today = datetime.now(timezone.utc).date()
 
           # Load or create points.json
           try:
               contents = repo.get_contents("points.json")
               points_data = json.loads(contents.decoded_content.decode())
               file_sha = contents.sha
+              
+              # Initialize metadata if not present
+              if "metadata" not in points_data:
+                  points_data["metadata"] = {
+                      "event": EVENT_NAME,
+                      "points_per_pr": POINTS_PER_PR,
+                      "max_points_per_day": MAX_POINTS_PER_DAY,
+                      "last_updated": datetime.now(timezone.utc).isoformat()
+                  }
           except:
-              points_data = {"users": {}, "history": []}
+              points_data = {
+                  "users": {},
+                  "history": [],
+                  "metadata": {
+                      "event": EVENT_NAME,
+                      "points_per_pr": POINTS_PER_PR,
+                      "max_points_per_day": MAX_POINTS_PER_DAY,
+                      "last_updated": datetime.now(timezone.utc).isoformat()
+                  }
+              }
               file_sha = None
 
           # Process all open PRs
           for pr in repo.get_pulls(state='open'):
-              print(f"\nProcessing PR #{pr.number} by @{pr.user.login}")
+              username = pr.user.login
+              print(f"\nProcessing PR #{pr.number} by @{username}")
               
               try:
-                  # Check mergeability first
+                  # Check if user already earned points today
+                  user_points_today = 0
+                  for entry in points_data["history"]:
+                      if entry.get("username") == username:
+                          entry_date = datetime.fromisoformat(entry["date"]).date()
+                          if entry_date == today:
+                              user_points_today += entry.get("points", 0)
+                  
+                  if user_points_today >= MAX_POINTS_PER_DAY:
+                      print(f"@{username} has already earned maximum points for today ({user_points_today}/{MAX_POINTS_PER_DAY})")
+                      continue
+                      
+                  # Check mergeability
                   if not pr.mergeable:
                       print(f"PR #{pr.number} not mergeable (mergeable_state: {pr.mergeable_state})")
                       continue
@@ -74,7 +108,6 @@ jobs:
                   
                   if merge_result.merged:
                       # Update points
-                      username = pr.user.login
                       current_points = points_data["users"].get(username, 0)
                       points_data["users"][username] = current_points + POINTS_PER_PR
                       
@@ -82,9 +115,14 @@ jobs:
                           "username": username,
                           "points": POINTS_PER_PR,
                           "pr_number": pr.number,
-                          "date": datetime.now().isoformat(),
-                          "reason": "PR merged"
+                          "date": datetime.now(timezone.utc).isoformat(),
+                          "reason": f"{EVENT_NAME}: {POINTS_PER_PR} points for PR #{pr.number}"
                       })
+                      
+                      # Update metadata
+                      points_data["metadata"]["last_updated"] = datetime.now(timezone.utc).isoformat()
+                      points_data["metadata"]["total_participants"] = len(points_data["users"])
+                      
                       print(f"Successfully merged PR #{pr.number} and added {POINTS_PER_PR} points to @{username}")
                       
               except GithubException as e:
@@ -94,10 +132,12 @@ jobs:
           # Save updated points
           try:
               updated_content = json.dumps(points_data, indent=2)
+              commit_message = f"Update points: {len(points_data['history'])} PRs processed"
+              
               if file_sha:
                   repo.update_file(
                       path="points.json",
-                      message=f"Update points: {len(points_data['history'])} PRs processed",
+                      message=commit_message,
                       content=updated_content,
                       sha=file_sha
                   )
