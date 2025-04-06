@@ -29,7 +29,10 @@ jobs:
 
       - name: Install dependencies
         run: pip install PyGithub
-
+      - name: Run Points Updater
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}  # Use your Personal Access Token
+        run: python3 daily_pr_points.py
       - name: Process PRs and update points
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
