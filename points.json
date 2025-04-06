@@ -1,6 +1,19 @@
 {
-  "users": {},
-  "history": [],
+  "users": {
+    "22MH1A04H3": {
+      "points": 3,
+      "social_media": ""
+    }
+  },
+  "history": [
+    {
+      "username": "22MH1A04H3",
+      "points": 3,
+      "pr_number": 91,
+      "date": "2025-04-06T11:53:21.640388+00:00",
+      "reason": "Daily PR Challenge: PR #91"
+    }
+  ],
   "metadata": {
     "event": "Daily PR Challenge",
     "points_per_pr": 3,
@@ -10,6 +23,6 @@
     "total_participants": 0,
     "total_points_distributed": 0
   },
-  "total_points": 0,
-  "last_updated": ""
+  "total_points": 3,
+  "last_updated": "2025-04-06T11:53:43.191257+00:00"
 }
