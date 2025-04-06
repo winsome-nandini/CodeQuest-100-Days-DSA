@@ -36,14 +36,17 @@ jobs:
           python3 <<'EOF'
           import os
           import json
+          import time
           from datetime import datetime, timezone
           from github import Github
           from github.GithubException import GithubException
 
           # Configuration
           POINTS_PER_PR = 3
-          MAX_POINTS_PER_DAY = 3  # Maximum points a user can earn per day
+          MAX_POINTS_PER_DAY = 3
           EVENT_NAME = "Daily PR Challenge"
+          MAX_RETRIES = 3
+          RETRY_DELAY = 5  # seconds
 
           # Initialize
           g = Github(os.environ['GITHUB_TOKEN'])
@@ -56,7 +59,6 @@ jobs:
               points_data = json.loads(contents.decoded_content.decode())
               file_sha = contents.sha
               
-              # Initialize metadata if not present
               if "metadata" not in points_data:
                   points_data["metadata"] = {
                       "event": EVENT_NAME,
@@ -77,6 +79,15 @@ jobs:
               }
               file_sha = None
 
+          def is_pr_mergeable(pr, retries=MAX_RETRIES):
+              for attempt in range(retries):
+                  pr = repo.get_pull(pr.number)  # Refresh PR object
+                  if pr.mergeable_state != "unknown":
+                      return pr.mergeable
+                  print(f"Attempt {attempt + 1}: Mergeability state unknown for PR #{pr.number}, retrying...")
+                  time.sleep(RETRY_DELAY)
+              return False
+
           # Process all open PRs
           for pr in repo.get_pulls(state='open'):
               username = pr.user.login
@@ -95,8 +106,8 @@ jobs:
                       print(f"@{username} has already earned maximum points for today ({user_points_today}/{MAX_POINTS_PER_DAY})")
                       continue
                       
-                  # Check mergeability
-                  if not pr.mergeable:
+                  # Check mergeability with retries
+                  if not is_pr_mergeable(pr):
                       print(f"PR #{pr.number} not mergeable (mergeable_state: {pr.mergeable_state})")
                       continue
                       
@@ -104,28 +115,34 @@ jobs:
                   pr.create_review(event="APPROVE", body="Auto-approved by workflow")
                   
                   # Merge PR
-                  merge_result = pr.merge(merge_method="squash")
-                  
-                  if merge_result.merged:
-                      # Update points
-                      current_points = points_data["users"].get(username, 0)
-                      points_data["users"][username] = current_points + POINTS_PER_PR
+                  try:
+                      merge_result = pr.merge(merge_method="squash")
                       
-                      points_data["history"].append({
-                          "username": username,
-                          "points": POINTS_PER_PR,
-                          "pr_number": pr.number,
-                          "date": datetime.now(timezone.utc).isoformat(),
-                          "reason": f"{EVENT_NAME}: {POINTS_PER_PR} points for PR #{pr.number}"
-                      })
+                      if merge_result.merged:
+                          # Update points
+                          current_points = points_data["users"].get(username, 0)
+                          points_data["users"][username] = current_points + POINTS_PER_PR
+                          
+                          points_data["history"].append({
+                              "username": username,
+                              "points": POINTS_PER_PR,
+                              "pr_number": pr.number,
+                              "date": datetime.now(timezone.utc).isoformat(),
+                              "reason": f"{EVENT_NAME}: {POINTS_PER_PR} points for PR #{pr.number}"
+                          })
+                          
+                          # Update metadata
+                          points_data["metadata"]["last_updated"] = datetime.now(timezone.utc).isoformat()
+                          points_data["metadata"]["total_participants"] = len(points_data["users"])
+                          
+                          print(f"Successfully merged PR #{pr.number} and added {POINTS_PER_PR} points to @{username}")
+                      else:
+                          print(f"PR #{pr.number} merge returned False (might need manual check)")
+                  except GithubException as e:
+                      print(f"Merge failed for PR #{pr.number}: {str(e)}")
+                      continue
                       
-                      # Update metadata
-                      points_data["metadata"]["last_updated"] = datetime.now(timezone.utc).isoformat()
-                      points_data["metadata"]["total_participants"] = len(points_data["users"])
-                      
-                      print(f"Successfully merged PR #{pr.number} and added {POINTS_PER_PR} points to @{username}")
-                      
-              except GithubException as e:
+              except Exception as e:
                   print(f"Failed to process PR #{pr.number}: {str(e)}")
                   continue
 
