@@ -2,63 +2,66 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Orbitron', sans-serif;
-  color: #fff;
-  background: transparent;
   overflow-x: hidden;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
 }
 
 #vanta-bg {
+  width: 100%;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
-  z-index: -1;
+  z-index: 0;
 }
 
-.container {
-  padding: 50px 20px;
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 60px 20px;
   text-align: center;
 }
 
 h1 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
+  font-size: 2.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  color: #c0c0c0;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  color: #cccccc;
 }
 
-.leaderboard-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.card {
+table {
+  margin: 0 auto;
+  width: 95%;
+  max-width: 1000px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-collapse: collapse;
   border-radius: 10px;
-  padding: 20px;
-  width: 250px;
-  text-align: center;
-  backdrop-filter: blur(6px);
-  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
 }
 
-.card:hover {
-  transform: scale(1.05);
+th, td {
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+th {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 2px solid #fff;
-  margin-bottom: 10px;
+}
+
+footer {
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #aaaaaa;
 }
