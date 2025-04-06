@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CodeQuest Leaderboard</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+    table { border-collapse: collapse; width: 100%; background: white; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+    th { background-color: #4CAF50; color: white; }
+  </style>
+</head>
+<body>
+  <h1>🌟 CodeQuest Leaderboard</h1>
+  <table id="leaderboard">
+    <thead>
+      <tr><th>Rank</th><th>Username</th><th>Points</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    async function loadLeaderboard() {
+      const res = await fetch('https://raw.githubusercontent.com/Abhishek-Sharma182005/CodeQuest-100-Days-DSA/main/points.json');
+      const data = await res.json();
+      const users = Object.entries(data.users)
+        .map(([username, details]) => ({ username, points: details.points }))
+        .sort((a, b) => b.points - a.points);
+
+      const tbody = document.querySelector("#leaderboard tbody");
+      users.forEach((user, i) => {
+        const row = `<tr>
+          <td>${i + 1}</td>
+          <td>${user.username}</td>
+          <td>${user.points}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+
+    loadLeaderboard();
+  </script>
+</body>
+</html>
