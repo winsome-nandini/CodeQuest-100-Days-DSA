@@ -18,6 +18,12 @@ def load_points_data():
     try:
         contents = repo.get_contents("points.json")
         data = json.loads(contents.decoded_content.decode())
+
+        # Ensure keys exist
+        data.setdefault("users", {})
+        data.setdefault("history", [])
+        data.setdefault("metadata", {})
+
         return data, contents.sha
     except Exception as e:
         raise Exception(f"Failed to load existing points.json: {str(e)}")
@@ -34,18 +40,15 @@ def can_merge_pr(pr):
 
 
 def already_counted(pr, history):
-    for entry in history:
-        if entry["pr_number"] == pr.number:
-            return True
-    return False
+    return any(entry["pr_number"] == pr.number for entry in history)
 
 
 def main():
     points_data, sha = load_points_data()
     processed_prs = 0
-    history = points_data.get("history", [])
-
+    history = points_data["history"]
     user_days = {}
+
     for entry in history:
         username = entry["username"]
         pr_day = datetime.fromisoformat(entry["date"]).date()
@@ -59,14 +62,7 @@ def main():
         if pr_date < EVENT_START_DATE or already_counted(pr, history):
             continue
 
-        pr_day = pr_date
-
-        points_data["users"].setdefault(username, {
-            "points": 0,
-            "social_media_points": 0
-        })
-
-        if username in user_days and pr_day in user_days[username]:
+        if username in user_days and pr_date in user_days[username]:
             continue
 
         if not can_merge_pr(pr):
@@ -87,8 +83,7 @@ def main():
                 print(f"Merge failed for PR #{pr.number}")
                 continue
 
-            user_days.setdefault(username, set()).add(pr_day)
-
+            # Add PR entry to history
             history.append({
                 "username": username,
                 "points": POINTS_PER_PR,
@@ -97,10 +92,19 @@ def main():
                 "reason": f"{EVENT_NAME}: PR #{pr.number}"
             })
 
-            # Recalculate only if not manually overridden
-            if not points_data["users"].get(username, {}).get("manual_override", False):
+            # Update user_days
+            user_days.setdefault(username, set()).add(pr_date)
+
+            # Ensure user exists
+            user_entry = points_data["users"].setdefault(username, {
+                "points": 0,
+                "social_media_points": 0
+            })
+
+            # Recalculate only if manual override is not set
+            if not user_entry.get("manual_override", False):
                 unique_days = len(user_days[username])
-                points_data["users"][username]["points"] = unique_days * POINTS_PER_PR
+                user_entry["points"] = unique_days * POINTS_PER_PR
 
             processed_prs += 1
             print(f"PR #{pr.number} by @{username} merged.")
@@ -109,22 +113,23 @@ def main():
             print(f"Processing error: {str(e)}")
             continue
 
-    points_data["history"] = history
-    points_data["total_points"] = sum(u["points"] for u in points_data["users"].values())
+    # Update metadata
+    total_points = sum(u["points"] for u in points_data["users"].values())
+    points_data["total_points"] = total_points
     points_data["last_updated"] = datetime.now(timezone.utc).isoformat()
     points_data["metadata"].update({
         "event": EVENT_NAME,
         "points_per_pr": POINTS_PER_PR,
         "event_start_date": EVENT_START_DATE.isoformat(),
         "total_participants": len(points_data["users"]),
-        "total_points_distributed": points_data["total_points"]
+        "total_points_distributed": total_points
     })
 
     if processed_prs > 0:
         save_points_data(points_data, sha)
-        print("points.json updated.")
+        print("✅ points.json updated.")
     else:
-        print("No new PRs processed today.")
+        print("✅ No new PRs processed today.")
 
 
 if __name__ == "__main__":
