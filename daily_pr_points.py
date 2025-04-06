@@ -29,85 +29,102 @@ def save_points_data(data, sha):
     repo.update_file("points.json", commit_msg, content, sha)
 
 
+def can_merge_pr(pr):
+    return pr.mergeable_state == "clean" and pr.mergeable
+
+
+def already_counted(pr, history):
+    for entry in history:
+        if entry["pr_number"] == pr.number:
+            return True
+    return False
+
+
 def main():
     points_data, sha = load_points_data()
     processed_prs = 0
-
-    if "users" not in points_data:
-        points_data["users"] = {}
-
-    if "history" not in points_data:
-        points_data["history"] = []
-
-    if "metadata" not in points_data:
-        points_data["metadata"] = {}
+    history = points_data.get("history", [])
 
     user_days = {}
-
-    # Step 1: Load previous unique PR days
-    for entry in points_data["history"]:
+    for entry in history:
         username = entry["username"]
         pr_day = datetime.fromisoformat(entry["date"]).date()
         if pr_day >= EVENT_START_DATE:
             user_days.setdefault(username, set()).add(pr_day)
 
-    # Step 2: Fetch ALL PRs (open, closed, merged)
-    for pr in repo.get_pulls(state='all'):
-        if not pr.merged:
-            continue
-
+    for pr in repo.get_pulls(state='open'):
         username = pr.user.login
         pr_date = pr.created_at.date()
 
-        if pr_date < EVENT_START_DATE:
+        if pr_date < EVENT_START_DATE or already_counted(pr, history):
             continue
 
-        # Avoid re-processing already counted PRs
-        if any(entry["pr_number"] == pr.number for entry in points_data["history"]):
-            continue
+        pr_day = pr_date
 
-        # Track PR date for user
-        user_days.setdefault(username, set()).add(pr_date)
-
-        if username not in points_data["users"]:
-            points_data["users"][username] = {
-                "points": 0,
-                "social_media_points": 0
-            }
-
-        # Log this PR in history
-        points_data["history"].append({
-            "username": username,
-            "points": POINTS_PER_PR,
-            "pr_number": pr.number,
-            "date": datetime.now(timezone.utc).isoformat(),
-            "reason": f"{EVENT_NAME}: PR #{pr.number}"
+        points_data["users"].setdefault(username, {
+            "points": 0,
+            "social_media_points": 0
         })
 
-        processed_prs += 1
-        print(f"PR #{pr.number} by @{username} counted.")
+        if username in user_days and pr_day in user_days[username]:
+            continue
 
-    # Step 3: Update total points per user
-    for username, days in user_days.items():
-        points_data["users"][username]["points"] = len(days) * POINTS_PER_PR
-        if "social_media_points" not in points_data["users"][username]:
-            points_data["users"][username]["social_media_points"] = 0
+        if not can_merge_pr(pr):
+            print(f"PR #{pr.number} not mergeable")
+            continue
 
-    # Step 4: Update metadata
+        try:
+            try:
+                pr.create_review(event="APPROVE", body="Auto-approved")
+            except GithubException as e:
+                if "Resource not accessible" in str(e):
+                    print(f"Approval error for PR #{pr.number}")
+                    continue
+                raise
+
+            result = pr.merge(merge_method="squash")
+            if not result.merged:
+                print(f"Merge failed for PR #{pr.number}")
+                continue
+
+            user_days.setdefault(username, set()).add(pr_day)
+
+            history.append({
+                "username": username,
+                "points": POINTS_PER_PR,
+                "pr_number": pr.number,
+                "date": datetime.now(timezone.utc).isoformat(),
+                "reason": f"{EVENT_NAME}: PR #{pr.number}"
+            })
+
+            # Recalculate only if not manually overridden
+            if not points_data["users"].get(username, {}).get("manual_override", False):
+                unique_days = len(user_days[username])
+                points_data["users"][username]["points"] = unique_days * POINTS_PER_PR
+
+            processed_prs += 1
+            print(f"PR #{pr.number} by @{username} merged.")
+
+        except Exception as e:
+            print(f"Processing error: {str(e)}")
+            continue
+
+    points_data["history"] = history
     points_data["total_points"] = sum(u["points"] for u in points_data["users"].values())
     points_data["last_updated"] = datetime.now(timezone.utc).isoformat()
-    points_data["metadata"]["event"] = EVENT_NAME
-    points_data["metadata"]["points_per_pr"] = POINTS_PER_PR
-    points_data["metadata"]["max_points_per_day"] = POINTS_PER_PR
-    points_data["metadata"]["event_start_date"] = EVENT_START_DATE.isoformat()
-    points_data["metadata"]["total_participants"] = len(points_data["users"])
-    points_data["metadata"]["total_points_distributed"] = points_data["total_points"]
+    points_data["metadata"].update({
+        "event": EVENT_NAME,
+        "points_per_pr": POINTS_PER_PR,
+        "event_start_date": EVENT_START_DATE.isoformat(),
+        "total_participants": len(points_data["users"]),
+        "total_points_distributed": points_data["total_points"]
+    })
 
     if processed_prs > 0:
         save_points_data(points_data, sha)
-        print("✅ points.json updated.")
+        print("points.json updated.")
     else:
-        print("ℹ️ No new PRs to process.")
+        print("No new PRs processed today.")
 
 
 if __name__ == "__main__":
