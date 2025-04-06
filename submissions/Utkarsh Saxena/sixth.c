@@ -11,6 +11,7 @@ int main(){
         printf("Oh no! The Glitch's trap was here! Try Again. ");
     }else{ //case of failure
         printf("Ivalid Choice.Please enter 'left' or 'right'");
+
     }
     return 0;
 }

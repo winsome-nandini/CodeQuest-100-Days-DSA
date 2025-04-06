@@ -1,0 +1,95 @@
+name: Calculate PR Points (April 1-5 Event)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # Daily at midnight UTC
+
+jobs:
+  calculate-points:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install PyGithub
+
+      - name: Calculate PR Points
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 <<'EOF'
+          import os
+          import json
+          from datetime import datetime, timezone
+          from github import Github
+
+          # Configuration
+          POINTS_PER_PR = 3
+          MAX_POINTS = 15
+          EVENT_START = datetime(2025, 4, 1, tzinfo=timezone.utc)
+          EVENT_END = datetime(2025, 4, 5, 23, 59, 59, tzinfo=timezone.utc)
+
+          # Initialize
+          g = Github(os.environ['GITHUB_TOKEN'])
+          repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
+
+          # Load existing points or initialize
+          try:
+              with open('points.json', 'r') as f:
+                  points_data = json.load(f)
+          except:
+              points_data = {"users": {}, "history": [], "metadata": {}}
+
+          # Process PRs
+          for pr in repo.get_pulls(state='all'):
+              if EVENT_START <= pr.created_at <= EVENT_END:
+                  username = pr.user.login
+                  
+                  # Initialize user if not exists
+                  if username not in points_data["users"]:
+                      points_data["users"][username] = 0
+                  
+                  # Calculate potential new points (capped at MAX_POINTS)
+                  potential_points = points_data["users"][username] + POINTS_PER_PR
+                  points_to_add = min(POINTS_PER_PR, MAX_POINTS - points_data["users"][username])
+                  
+                  if points_to_add > 0:
+                      points_data["users"][username] += points_to_add
+                      points_data["history"].append({
+                          "username": username,
+                          "points": points_to_add,
+                          "date": pr.created_at.isoformat(),
+                          "pr_number": pr.number,
+                          "reason": f"April 1-5 Event: {points_to_add} points for PR #{pr.number}"
+                      })
+
+          # Update metadata
+          points_data["metadata"] = {
+              "event": "April 1-5 PR Challenge",
+              "points_per_pr": POINTS_PER_PR,
+              "max_points": MAX_POINTS,
+              "calculated_at": datetime.now(timezone.utc).isoformat(),
+              "total_participants": len(points_data["users"])
+          }
+
+          # Save and push
+          with open('points.json', 'w') as f:
+              json.dump(points_data, f, indent=2)
+
+          os.system('git config --global user.email "actions@github.com"')
+          os.system('git config --global user.name "GitHub Actions"')
+          os.system('git add points.json')
+          os.system('git commit -m "Update points: April 1-5 PR Challenge"')
+          os.system('git push')
+          EOF

@@ -1,0 +1,36 @@
+# This is a basic workflow that is manually triggered
+
+name: Manual workflow
+
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr-number:
+        description: 'Pull Request Number to auto approve and merge'
+        required: true
+        type: number
+
+jobs:
+  auto-approve-and-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto approve the PR
+        uses: hmarr/auto-approve-action@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          PULL_REQUEST_NUMBER: ${{ inputs.pr-number }}
+
+      - name: Merge the PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: ${{ inputs.pr-number }},
+              merge_method: 'squash'
+            });
+
