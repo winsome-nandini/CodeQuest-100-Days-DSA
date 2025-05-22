@@ -1,5 +1,4 @@
+from collections import Counter
 a=input("").split()
-b={}
-for i in a:
-    b[i]=a.count(i)
-print("Current Stack: ",b)
+b=Counter(a)
+print("Current Stack: ",dict(b))
