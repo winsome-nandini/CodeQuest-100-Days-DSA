@@ -1,5 +1,5 @@
-a=list(map(int,input("Enqueue: ").split()))
-b=int(input("Dequeue: "))
+a=list(map(int,input("Push: ").split()))
+b=int(input("Pop: "))
 for i in range(b):
-    a.pop(0)
+    a.pop(-1)
 print("Remaining Queue: ",a)
