@@ -1,6 +1,5 @@
 n = input("Enter cipher text: ")
 c = int(input("Enter shift value: "))
-print("Decoded Message: ", end="")
 
 for i in n:
     if i.isalpha():
